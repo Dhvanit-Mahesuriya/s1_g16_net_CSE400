@@ -1,0 +1,12 @@
+Our project lies in the area of Computer Networks in which we majorly saw 3 domains:
+    (1)Network Performance and QOS
+    (2)Probablistic modelling in Computer Networks
+    (3)Network Security
+In Network Performance and QoS,
+This part is about how well a network works. It includes things like delay, speed, reliability, coverage, and detection accuracy. Network performance keeps changing because users move, traffic varies, and wireless signals are not stable.
+
+In Probabilistic Modeling in Computer Networks,
+In real networks, everything is not fixed. Node positions, sensing results, traffic, and failures are random. Probability is used to model this uncertainty and study how the network behaves in different situations.
+
+In Network Security,
+This part deals with attacks and threats in networks. It includes detecting attacks, malware spread, and data protection. Since attackers behave unpredictably, probability plays an important role here too.
