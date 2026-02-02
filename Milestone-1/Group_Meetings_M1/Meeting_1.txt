@@ -1,6 +1,7 @@
+
 Meeting 1( with TA)
 Date: 18-01-2026
-Purpose: Meeting team and understanding Computer Networking
+Purpose: Meeting team & understanding Computer Networking
 
     (1)Understood project work and about milestones
 
@@ -56,3 +57,4 @@ Guidelines and Clarifications:
     (6)Discussed research papers with mentor
 
     (7)Clarified and decided the main research paper.
+
