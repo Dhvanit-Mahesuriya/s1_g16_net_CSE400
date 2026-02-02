@@ -10,3 +10,21 @@ In real networks, everything is not fixed. Node positions, sensing results, traf
 
 In Network Security,
 This part deals with attacks and threats in networks. It includes detecting attacks, malware spread, and data protection. Since attackers behave unpredictably, probability plays an important role here too.
+
+Further, we researched papes of this domains:
+    (1) In Network Performance and QOS, we saw papers with following topics:
+        (a)UAV-Assisted Emergency Communication with Cache-Enabled Rescuers under QoS Constraints
+        (b)Energy-Aware Connectivity Analysis of MANET under Random Waypoint Mobility
+        (c)Cellular Network Traffic Analysis and Hotspot Prediction Techniques
+        (d)Multi-UAV Cooperative Sensing: Deployment Optimization and Detection Performance
+    (2) In Probabilistic Modeling in Computer Networks, we saw papers with following topics:
+        (a)Reliable Routing in Networks with Probabilistic Link Failures
+        (b)Probabilistic Modeling of Malware and Information Spread in Computer Networks
+        and (b),(c) and (d) from (1) were also overlapping with this topic too
+    (3) In Network Security, we saw papers with following topics:
+        (a)Security Challenges of Transformer-Based Encryption against Advanced Malware Attacks
+        (b)Detection of Known and Unknown Cyber Attacks using Network Behavior Analysis
+        and (b) from (2)
+
+From this we selected "Multi-UAV Cooperative Sensing: Deployment Optimization and Detection Performance" and after going through whole paper we took  a problem statement : "Impact of UAV deployment strategies on detection performance in cooperative sensing networks" from this paper.
+The parameters involved in this problem are also reflected in the concept map.
