@@ -1,0 +1,209 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{enumitem}
+
+\title{CSE400 – Fundamentals of Probability in Computing}
+\author{Lecture 4: Joint Probability and Conditional Probability}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Covered Portion: Introduction to Probability Theory}
+
+\section*{1. Experiments, Sample Space, and Events}
+
+\subsection*{Definition: Experiment ($E$)}
+
+An experiment is a procedure we perform that produces some result.
+
+\textbf{Example:}
+
+Tossing a coin five times is an experiment denoted as:
+
+\[
+E_5
+\]
+
+\subsection*{Definition: Outcome ($\xi$)}
+
+An outcome is a possible result of an experiment.
+
+\textbf{Example:}
+
+One outcome of the experiment $E_5$ is:
+
+\[
+\xi_1 = HHTHT
+\]
+
+\subsection*{Definition: Event}
+
+An event is a certain set of outcomes of an experiment.
+
+\textbf{Example:}
+
+Let $C$ be an event in experiment $E_5$ defined as:
+
+\[
+C = \{\text{all outcomes consisting of an even number of heads}\}
+\]
+
+\subsection*{Definition: Sample Space ($S$)}
+
+The sample space $S$ is the collection or set of all possible distinct outcomes of an experiment.
+
+\subsection*{Properties}
+
+\begin{itemize}
+\item Outcomes are mutually exclusive  
+\[
+\rightarrow \text{Only one outcome can occur at a time}
+\]
+
+\item Outcomes are collectively exhaustive  
+\[
+\rightarrow \text{No outcome outside the set is possible}
+\]
+\end{itemize}
+
+\textbf{Example (single coin flip):}
+
+\[
+S = \{H,T\}
+\]
+
+Cannot get $H$ and $T$ simultaneously (mutually exclusive)
+
+No other result exists (collectively exhaustive)
+
+\subsection*{Continued Properties of Sample Space}
+
+\[
+S \text{ is the universal set of outcomes}
+\]
+
+Sample space may be:
+
+\begin{itemize}
+\item Discrete
+\item Countably infinite
+\item Continuous
+\end{itemize}
+
+\subsection*{Examples of Experiments}
+
+\begin{itemize}
+\item Flipping a fair coin once
+\item Rolling a cubical die with numbered faces
+\item Rolling two dice
+\item Flipping a coin until tails occurs
+\item Random number generator in interval $[0,1)$
+\end{itemize}
+
+\section*{2. Axioms of Probability}
+
+Before assigning probabilities:
+
+Probability is a numerical measure of the likelihood of events, or a function mapping events to numerical values measuring likelihood.
+
+\subsection*{Axiom 1: Boundedness}
+
+For any event $A$:
+
+\[
+0 \le Pr(A) \le 1
+\]
+
+\subsection*{Axiom 2: Total Probability of Sample Space}
+
+If $S$ is the sample space:
+
+\[
+Pr(S) = 1
+\]
+
+\subsection*{Axiom 3: Additivity for Mutually Exclusive Events}
+
+If:
+
+\[
+A \cap B = \emptyset
+\]
+
+then:
+
+\[
+Pr(A \cup B) = Pr(A) + Pr(B)
+\]
+
+\subsection*{Infinite Version of Axiom 3}
+
+For mutually exclusive events:
+
+\[
+A_i \cap A_j = \emptyset \quad \text{for } i \ne j
+\]
+
+then:
+
+\[
+Pr\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} Pr(A_i)
+\]
+
+\section*{3. Corollary from Probability Axioms}
+
+Define:
+
+\[
+A_i = \emptyset \quad \text{for all } i > M
+\]
+
+\subsection*{Corollary 2.1 (Finite Additivity)}
+
+For a finite number $M$ of mutually exclusive events:
+
+\[
+A_i \cap A_j = \emptyset \quad (i \ne j)
+\]
+
+then:
+
+\[
+Pr\left(\bigcup_{i=1}^{M} A_i\right) = \sum_{i=1}^{M} Pr(A_i)
+\]
+
+\subsection*{Notes}
+
+Axiom 3 reduces to Corollary 2.1 when sample space is finite
+
+Axiom 3 is required for infinite sample spaces
+
+\section*{4. Propositions from Probability Axioms}
+
+\subsection*{Proposition 2.1: Complement Rule}
+
+For any event $A$:
+
+\[
+Pr(A^c) = 1 - Pr(A)
+\]
+
+\subsection*{Proposition 2.2: Monotonicity}
+
+If:
+
+\[
+A \subset B
+\]
+
+then:
+
+\[
+Pr(A) \le Pr(B)
+\]
+
+\end{document}
+
