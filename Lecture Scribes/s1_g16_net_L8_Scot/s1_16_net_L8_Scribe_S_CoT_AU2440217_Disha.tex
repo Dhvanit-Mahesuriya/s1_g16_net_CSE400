@@ -1,0 +1,313 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{Gaussian Random Variable and Associated Functions}
+
+
+\section*{1. Moments and Central Moments}
+
+\subsection*{1.1 Definition: Central Moment}
+
+Let $X$ be a continuous random variable with PDF $f_X(x)$ and mean $\mu_X = \mathbb{E}[X]$.
+  
+The $n^{\text{th}}$ central moment is defined as:
+
+\[
+\mathbb{E}\left[(X - \mu_X)^n\right] = \int (x - \mu_X)^n f_X(x)\, dx
+\]
+
+\textbf{Dependencies explicitly used:}
+\begin{itemize}
+\item Expectation is defined via integration over the PDF.
+\item The mean $\mu_X$ must exist.
+\item The expression depends only on $f_X(x)$ and $\mu_X$.
+\end{itemize}
+
+\subsection*{1.2 Evaluation of Central Moments for Specific Orders}
+
+\textbf{Case $n=0$}
+
+\[
+\mathbb{E}[(X - \mu_X)^0] = \mathbb{E}[1] = 1
+\]
+
+This follows directly from the definition of expectation.
+
+\textbf{Case $n=1$}
+
+\[
+\mathbb{E}[X - \mu_X] = \mathbb{E}[X] - \mu_X = \mu_X - \mu_X = 0
+\]
+
+\textbf{Reasoning used:}
+
+Linearity of expectation and the definition of the mean.
+
+\textbf{Case $n=2$: Variance}
+
+\[
+\sigma_X^2 = \mathbb{E}\left[(X - \mu_X)^2\right]
+\]
+
+Expand the square:
+
+\[
+(X - \mu_X)^2 = X^2 - 2\mu_X X + \mu_X^2
+\]
+
+Taking expectation:
+
+\[
+\mathbb{E}[X^2] - 2\mu_X \mathbb{E}[X] + \mu_X^2
+\]
+
+Substituting $\mathbb{E}[X] = \mu_X$:
+
+\[
+\sigma_X^2 = \mathbb{E}[X^2] - \mu_X^2
+\]
+
+\subsection*{1.3 Higher-Order Central Moments}
+
+\textbf{Skewness ($n=3$)}
+
+\[
+C_s = \frac{\mathbb{E}\left[(X - \mu_X)^3\right]}{\sigma_X^3}
+\]
+
+\textbf{Lecture interpretation:}
+\begin{itemize}
+\item $C_s > 0$: PDF is right-skewed
+\item $C_s < 0$: PDF is left-skewed
+\end{itemize}
+
+\textbf{Kurtosis ($n=4$)}
+
+\[
+C_k = \mathbb{E}\left[(X - \mu_X)^4\right]
+\]
+
+\textbf{Lecture statement:}
+
+A large value implies the random variable has a large peak near the mean.
+
+\section*{2. Properties of Expectation}
+
+\subsection*{2.1 Linearity with Constants}
+
+For constants $a$ and $b$:
+
+\[
+\mathbb{E}[aX + b] = a\mathbb{E}[X] + b
+\]
+
+\textbf{Dependency:}
+
+Follows directly from linearity of integration.
+
+\subsection*{2.2 Linearity over Sums}
+
+If a function is written as:
+
+\[
+g(x) = g_1(x) + g_2(x) + \cdots + g_N(x)
+\]
+
+Then:
+
+\[
+\mathbb{E}\left[\sum_{k=1}^{N} g_k(X)\right] = \sum_{k=1}^{N} \mathbb{E}[g_k(X)]
+\]
+
+\subsection*{2.3 Expectation via PDF}
+
+\[
+\mathbb{E}[X] = \int x f_X(x)\, dx
+\]
+
+This is the foundational definition used in all derivations.
+
+\section*{3. Gaussian Random Variable}
+
+\subsection*{3.1 Definition}
+
+A random variable $X$ is Gaussian if its PDF is:
+
+\[
+f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-m)^2}{2\sigma^2}\right)
+\]
+
+Where:
+\begin{itemize}
+\item $m = \mathbb{E}[X]$
+\item $\sigma^2 = \mathrm{Var}(X)$
+\end{itemize}
+
+Notation:
+
+\[
+X \sim \mathcal{N}(m,\sigma^2)
+\]
+
+\subsection*{3.2 Standard Normal Distribution}
+
+If:
+
+\[
+m = 0, \quad \sigma^2 = 1
+\]
+
+Then the distribution is the standard normal distribution.
+
+\section*{4. Standard Functions Associated with Gaussian RVs}
+
+\subsection*{4.1 Error Function}
+
+\[
+\mathrm{erf}(x) = \frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-t^2}\, dt
+\]
+
+\subsection*{4.2 Complementary Error Function}
+
+\[
+\mathrm{erfc}(x) = 1 - \mathrm{erf}(x) = \frac{2}{\sqrt{\pi}} \int_{x}^{\infty} e^{-t^2}\, dt
+\]
+
+\subsection*{4.3 $\Phi$-Function (CDF of Standard Normal)}
+
+\[
+\Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-t^2/2}\, dt
+\]
+
+\subsection*{4.4 Q-Function (Gaussian Tail Function)}
+
+\[
+Q(x) = \frac{1}{\sqrt{2\pi}} \int_{x}^{\infty} e^{-t^2/2}\, dt
+\]
+
+Identity stated in lecture:
+
+\[
+Q(x) = 1 - \Phi(x)
+\]
+
+\section*{5. Relation Between $\Phi$-Function and Q-Function}
+
+\subsection*{5.1 Evaluating the CDF of a Gaussian RV}
+
+Start from the CDF definition:
+
+\[
+F_X(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y-m)^2}{2\sigma^2}\right)\, dy
+\]
+
+Substitute:
+
+\[
+t = \frac{y-m}{\sigma}
+\]
+
+Then:
+
+\[
+F_X(x) = \Phi\left(\frac{x-m}{\sigma}\right)
+\]
+
+\subsection*{5.2 Evaluating Tail Probabilities}
+
+\[
+\Pr(X > x) = \int_{x}^{\infty} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y-m)^2}{2\sigma^2}\right)\, dy
+\]
+
+After substitution:
+
+\[
+\Pr(X > x) = Q\left(\frac{x-m}{\sigma}\right)
+\]
+
+\subsection*{5.3 Key Identities (Explicitly Listed)}
+
+\[
+Q(x) = 1 - \Phi(x)
+\]
+
+\[
+F_X(x) = 1 - Q\left(\frac{x-m}{\sigma}\right)
+\]
+
+\textbf{Lecture notes:}
+\begin{itemize}
+\item $\Phi$-function is used to evaluate the CDF
+\item Q-function is more natural for probabilities of the form $\Pr(X > x)$
+\end{itemize}
+
+\section*{6. Gaussian Example (Fully from Lecture)}
+
+\textbf{Given PDF}
+
+\[
+f_X(x) = \frac{1}{\sqrt{8\pi}} \exp\left(-\frac{(x+3)^2}{8}\right)
+\]
+
+\subsection*{Step 1: Identify Parameters}
+
+Compare with the Gaussian PDF:
+
+\[
+\frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-m)^2}{2\sigma^2}\right)
+\]
+
+Thus:
+
+\[
+m = -3, \quad \sigma^2 = 4, \quad \sigma = 2
+\]
+
+\subsection*{Step 2: Gaussian Relations Used}
+
+\[
+F_X(x) = \Phi\left(\frac{x-m}{\sigma}\right)
+\]
+
+\[
+\Pr(X > x) = Q\left(\frac{x-m}{\sigma}\right)
+\]
+
+\subsection*{Step 3: Probabilities to Be Evaluated}
+
+\begin{enumerate}
+\item $\Pr(X \le 0)$
+
+Left-tail probability $\rightarrow$ $\Phi$-function
+
+\item $\Pr(X > 4)$
+
+Right-tail probability $\rightarrow$ Q-function
+
+\item $\Pr(|X + 3| < 2)$
+
+Convert:
+
+\[
+-2 < X + 3 < 2 \Rightarrow -5 < X < -1
+\]
+
+Evaluate as:
+
+\[
+F_X(-1) - F_X(-5)
+\]
+
+\item $\Pr(|X - 2| > 1)$
+
+Converted into tail probabilities and evaluated using $\Phi$ and Q as appropriate
+\end{enumerate}
+
+\textbf{Lecture hint explicitly stated:}
+
+Use Q(x) for right-tail probabilities and $\Phi(x)$ for left-tail probabilities.
+
+\end{document}
