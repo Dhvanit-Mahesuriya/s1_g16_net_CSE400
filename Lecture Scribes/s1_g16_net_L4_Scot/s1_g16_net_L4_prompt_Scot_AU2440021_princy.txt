@@ -1,0 +1,2 @@
+lec-4 prompt
+generate a lecture scribe for this pdf. don't give unnecessary expansions, motivations and simplifications. stick to the contents of the lecture pdf. lecture scribe is exam ready material for the preparations before exam. cover all the concepts and maintain the logical order of the pdf. give step by step reasoning of definitions, derivations, proofs and examples where required.
