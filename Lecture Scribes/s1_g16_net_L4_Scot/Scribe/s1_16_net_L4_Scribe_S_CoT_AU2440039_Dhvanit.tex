@@ -1,0 +1,429 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{enumitem}
+
+\title{\textbf{CSE400 Lecture 4 Scribe}\\
+Joint Probability and Conditional Probability}
+\author{Course: CSE400 -- Fundamentals of Probability in Computing\\
+Instructor: Dhaval Patel, PhD}
+\date{January 15, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Lecture Outline}
+
+The lecture develops probability theory from basic foundations and then introduces
+joint probability.
+
+Topics covered:
+
+\begin{itemize}
+    \item Introduction to Probability Theory
+    \item Experiments, Sample Space, and Events
+    \item Axioms of Probability
+    \item Corollaries and Propositions from Probability Axioms
+    \item How to Assign Probability
+    \begin{itemize}
+        \item Classical Approach
+        \item Relative Frequency Approach
+    \end{itemize}
+    \item Joint Probability
+    \begin{itemize}
+        \item Motivation, Notation, and Concepts
+        \item Example 1: Card Deck Example
+        \item Example 2: Costume Party Example
+    \end{itemize}
+    \item Conditional Probability
+    \begin{itemize}
+        \item Motivation, Notation, and Concepts
+        \item Example 3: Cards Without Replacement
+        \item Example 4: Game of Poker
+        \item Example 5: The Missing Key
+    \end{itemize}
+\end{itemize}
+
+\section{Introduction to Probability Theory}
+
+Probability theory begins with defining experiments, outcomes, events, and sample
+spaces before assigning probabilities.
+
+\section{Experiments, Sample Space, and Events}
+
+\subsection{Experiment}
+
+\textbf{Definition:}  
+An Experiment ($E$) is a procedure we perform that produces some result.
+
+\textbf{Example:}  
+Tossing a coin five times is denoted as:
+
+\[
+E_5
+\]
+
+\subsection{Outcome}
+
+\textbf{Definition:}  
+An Outcome ($\xi$) is a possible result of an experiment.
+
+\textbf{Example:}  
+One outcome of $E_5$ is:
+
+\[
+\xi_1 = HHTHT
+\]
+
+\subsection{Event}
+
+\textbf{Definition:}  
+An Event is a certain set of outcomes of an experiment.
+
+\textbf{Example:}  
+Event $C$ for experiment $E_5$:
+
+\[
+C = \{\text{all outcomes consisting of an even number of heads}\}
+\]
+
+\subsection{Sample Space}
+
+\textbf{Definition:}  
+The Sample Space ($S$) is the collection or set of all possible distinct outcomes of an
+experiment.
+
+Key properties:
+
+\begin{itemize}
+    \item \textbf{Mutually Exclusive:} outcomes cannot occur together
+    \item \textbf{Collectively Exhaustive:} outcomes cover all possibilities
+\end{itemize}
+
+\textbf{Example: Flip a coin}
+
+\begin{itemize}
+    \item Heads or tails, not both
+    \item Nothing else is possible
+\end{itemize}
+
+Sample space may be:
+
+\begin{itemize}
+    \item Discrete
+    \item Countably infinite
+    \item Continuous
+\end{itemize}
+
+Examples listed:
+
+\begin{itemize}
+    \item Flipping a fair coin once
+    \item Rolling a cubical die
+    \item Rolling two dice
+    \item Flip until a tail occurs
+    \item Random number generator in $[0,1)$
+\end{itemize}
+
+\section{Axioms of Probability}
+
+After defining events, the next step is assigning probabilities.
+
+\subsection{Probability Definition}
+
+Probability is:
+
+\begin{itemize}
+    \item A measure of the likelihood of various events
+    \item OR a function of an event that produces a numerical quantity measuring likelihood
+\end{itemize}
+
+\subsection{Axioms}
+
+Axioms are self-evident and require no proof.
+
+\subsubsection*{Axiom 1 (Bounds)}
+
+For any event $A$:
+
+\[
+0 \le Pr(A) \le 1
+\]
+
+\subsubsection*{Axiom 2 (Certain Event)}
+
+If $S$ is the sample space:
+
+\[
+Pr(S) = 1
+\]
+
+\subsubsection*{Axiom 3 (Additivity)}
+
+If $A \cap B = \emptyset$:
+
+\[
+Pr(A \cup B) = Pr(A) + Pr(B)
+\]
+
+For infinitely many mutually exclusive sets $A_i$:
+
+\[
+Pr\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} Pr(A_i)
+\]
+
+\section{Corollary from Probability Axioms}
+
+\textbf{Corollary 2.1}  
+For a finite number $M$ of mutually exclusive sets:
+
+\[
+Pr\left(\bigcup_{i=1}^{M} A_i\right) = \sum_{i=1}^{M} Pr(A_i)
+\]
+
+Important slide notes:
+
+\begin{itemize}
+    \item Axiom 3 is equivalent to Corollary 2.1 when the sample space is finite
+    \item The generality of Axiom 3 is necessary for infinite sample spaces
+\end{itemize}
+
+\section{Propositions from Probability Axioms}
+
+\subsection*{Proposition 2.1 (Complement Rule)}
+
+\[
+Pr(A^c) = 1 - Pr(A)
+\]
+
+\subsection*{Proposition 2.2 (Subset Rule)}
+
+If $A \subset B$:
+
+\[
+Pr(A) \le Pr(B)
+\]
+
+\subsection*{Proposition 2.3 (Union Rule)}
+
+For any sets $A$ and $B$:
+
+\[
+Pr(A \cup B) = Pr(A) + Pr(B) - Pr(A \cap B)
+\]
+
+\subsection*{Proposition 2.4 (Inclusion--Exclusion Principle)}
+
+For events $A_1, \dots, A_M$:
+
+\[
+Pr\left(\bigcup_{i=1}^{M} A_i\right)
+= \sum_i Pr(A_i) - \sum_{i<j} Pr(A_iA_j) + \cdots + (-1)^{M+1}Pr(A_1A_2\cdots A_M)
+\]
+
+\section{Assigning Probabilities}
+
+\subsection{Classical Approach}
+
+Examples listed:
+
+\begin{itemize}
+    \item Coin flipping: compute $Pr(H)$, $Pr(T)$
+    \item Dice rolling: probability of even number
+    \item Pair of dice: probability sum equals five
+\end{itemize}
+
+\subsection{Relative Frequency Approach}
+
+Example: Pair of dice, sum equals five.
+
+Inference from slides:
+
+\begin{itemize}
+    \item Exact probability requires infinite repetitions
+    \item Many random phenomena are not repeatable
+\end{itemize}
+
+\section{Joint Probability}
+
+\subsection{Motivation}
+
+All events are not mutually exclusive.
+
+We are interested in the probability of intersection:
+
+\[
+A \cap B
+\]
+
+\subsection{Notation}
+
+Joint probability is denoted as:
+
+\[
+Pr(A,B) \quad \text{or} \quad Pr(A \cap B)
+\]
+
+\subsection{Multiple Events}
+
+For events $A_1, A_2, \dots, A_M$:
+
+\[
+Pr(A_1, A_2, \dots, A_M)
+\]
+
+\subsection{Calculation Approaches}
+
+\subsubsection*{Approach 1: Classical}
+
+Step-by-step reasoning:
+
+\begin{enumerate}
+    \item Express both events $A$ and $B$ using atomic outcomes
+    \item Write the set of atomic outcomes common to both
+    \item Calculate probabilities of those outcomes
+\end{enumerate}
+
+\subsubsection*{Approach 2: Relative Frequency}
+
+Let $n_{AB}$ be the number of times $A$ and $B$ occur simultaneously in $n$ trials:
+
+\[
+Pr(A,B) = \lim_{n\to\infty} \frac{n_{AB}}{n}
+\]
+
+\section{Worked Examples}
+
+\subsection{Example 1: Card Deck Example}
+
+A deck has 52 cards.
+
+Define:
+
+\[
+A = \{\text{Red card selected}\}
+\]
+\[
+B = \{\text{Number card selected (Ace is a number card)}\}
+\]
+\[
+C = \{\text{Heart card selected}\}
+\]
+
+Find:
+
+\[
+Pr(A), Pr(B), Pr(C), Pr(A,B), Pr(A,C), Pr(B,C)
+\]
+
+\subsubsection*{Solution}
+
+Step 1: Individual Probabilities
+
+\[
+Pr(A) = \frac{26}{52}
+\]
+
+\[
+Pr(B) = \frac{40}{52}
+\]
+
+\[
+Pr(C) = \frac{13}{52}
+\]
+
+Step 2: Joint Probabilities
+
+Red number cards:
+
+\[
+10 + 10 = 20
+\]
+
+\[
+Pr(A,B) = \frac{20}{52}
+\]
+
+All hearts are red:
+
+\[
+Pr(A,C) = \frac{13}{52}
+\]
+
+Number cards that are hearts:
+
+\[
+Pr(B,C) = \frac{10}{52}
+\]
+
+\subsection{Example 2: Costume Party Example}
+
+Alex has:
+
+\begin{itemize}
+    \item 3 food-stained white t-shirts
+    \item 1 radioactive green cape
+    \item 2 dinosaur pajama pants
+    \item 4 polka-dot boxer shorts
+\end{itemize}
+
+Probability outfit is:
+
+Green cape AND Polka-dot boxers
+
+Options:
+
+\[
+\frac{1}{2}, \frac{1}{4}, \frac{1}{6}
+\]
+
+Step 1: Analyze Tops
+
+Total tops:
+
+\[
+3 + 1 = 4
+\]
+
+Probability of cape:
+
+\[
+Pr(\text{Cape}) = \frac{1}{4}
+\]
+
+(The slide context stops at Step 1, so no further solution steps can be added.)
+
+\section{Conditional Probability}
+
+The lecture outline includes Conditional Probability with Examples 3--5, but the
+provided slide context does not include the actual definitions or worked derivations.
+
+Therefore, conditional probability content cannot be written without introducing
+material not present in the context.
+
+\section{Exam Revision Summary}
+
+Key formulas from Lecture 4:
+
+\[
+Pr(A,B) = Pr(A \cap B)
+\]
+
+\[
+Pr(A \cup B) = Pr(A) + Pr(B) - Pr(A \cap B)
+\]
+
+\[
+Pr(A^c) = 1 - Pr(A)
+\]
+
+\[
+Pr(A,B) = \lim_{n\to\infty} \frac{n_{AB}}{n}
+\]
+
+\bigskip
+
+\textbf{End of Lecture 4 Scribe}
+
+\end{document}
