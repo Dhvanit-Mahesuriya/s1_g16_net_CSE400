@@ -1,0 +1,3 @@
+Assume you are expert in lecture Scribe generation. Generate a lecture scribe suitable for preparation for CSE400 Lecture 8: Gaussian, Uniform, Exponential, and Gamma Random Variables.
+While writing the scribe, reason step by step through definitions, assumptions, properties, derivations and worked examples with solutions exactly as mentioned in the provided context. Include this reasoning in the scribe so that the logical flow is clear for revision. So reader should get easiest possible simplest way for revising including all formulas and necessary equation mentioned their 
+Use only the provided lecture slides and relevant textbook excerpts. Do not introduce any material, explanations or examples that are not present in the context.
