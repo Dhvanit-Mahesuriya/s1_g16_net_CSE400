@@ -1,0 +1,388 @@
+\documentclass[12pt]{article}
+
+%-------------------------------------------------
+% Packages
+%-------------------------------------------------
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage[hidelinks]{hyperref}   % Clean TOC (no red boxes)
+\usepackage{graphicx}
+
+%-------------------------------------------------
+% Page Setup
+%-------------------------------------------------
+\geometry{a4paper, margin=1in}
+
+%-------------------------------------------------
+% Title Information
+%-------------------------------------------------
+\title{\textbf{Lecture Scribe: CSE400 Fundamentals of Probability in Computing}\\
+Lecture 8: Gaussian, Uniform, Exponential, and Gamma Random Variables}
+
+\author{Instructor: Dhaval Patel, PhD}
+\date{January 29, 2026}
+
+%-------------------------------------------------
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+%-------------------------------------------------
+\section{Introduction to Moments of Continuous Random Variables (CRV)}
+
+To analyze the shape and characteristics of probability distributions, we utilize \textbf{central moments}, which describe how a random variable deviates from its mean.
+
+\subsection{Definitions and Step-by-Step Derivations}
+
+\subsubsection{The $n^{th}$ Order Central Moment}
+
+The $n^{th}$ order central moment is defined as the expected value of the difference between the random variable $X$ and its mean $\mu_X$, raised to the power of $n$:
+
+\[
+E[(X - \mu_X)^n] = \int_{-\infty}^{\infty} (x - \mu_X)^n f_X(x)\, dx
+\]
+
+%-------------------------------------------------
+\subsubsection{Case $n=0$ (Zeroth Moment)}
+
+\textbf{Reasoning:} Any value raised to the power of zero is 1.
+
+\[
+E[(X - \mu_X)^0] = E[1] = 1
+\]
+
+%-------------------------------------------------
+\subsubsection{Case $n=1$ (First Central Moment)}
+
+\[
+E[X - \mu_X] = E[X] - \mu_X
+\]
+
+Since $E[X] = \mu_X$, we obtain:
+
+\[
+\mu_X - \mu_X = 0
+\]
+
+\textbf{Conclusion:} The first central moment is always zero.
+
+%-------------------------------------------------
+\subsubsection{Case $n=2$ (Variance $\sigma_X^2$)}
+
+\[
+\sigma_X^2 = E[(X - \mu_X)^2]
+\]
+
+Expanding:
+
+\[
+\sigma_X^2 = E[x^2] - 2\mu_X E[x] + \mu_X^2
+\]
+
+Substituting $E[X] = \mu_X$:
+
+\[
+\sigma_X^2 = E[x^2] - 2\mu_X^2 + \mu_X^2
+\]
+
+Final form:
+
+\[
+\sigma_X^2 = E[x^2] - \mu_X^2
+\]
+
+%-------------------------------------------------
+\subsection{Higher-Order Moments: Skewness and Kurtosis}
+
+\subsubsection{Skewness ($n=3$)}
+
+Skewness measures the symmetry of the PDF:
+
+\[
+C_s = \frac{E[(X - \mu_X)^3]}{\sigma_X^3}
+\]
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+    \item Positive ($+$): Right-skewed distribution
+    \item Negative ($-$): Left-skewed distribution
+\end{itemize}
+
+%-------------------------------------------------
+\subsubsection{Kurtosis ($n=4$)}
+
+Kurtosis measures the peakedness of the PDF:
+
+\[
+c_k = E[(X - \mu_X)^4]
+\]
+
+A large value indicates a sharp peak near the mean $\mu_X$.
+
+%=================================================
+\section{Gaussian Random Variable}
+
+The Gaussian (Normal) random variable is a fundamental model for uncertainty and noise in computing.
+
+%-------------------------------------------------
+\subsection{Definition}
+
+A random variable $X$ is Gaussian if its PDF is:
+
+\[
+f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left(-\frac{(x-m)^2}{2\sigma^2}\right)
+\]
+
+Notation:
+
+\[
+X \sim \mathcal{N}(m, \sigma^2)
+\]
+
+where $m$ is the mean and $\sigma^2$ is the variance.
+
+%-------------------------------------------------
+\subsection{Standard Normal Distribution}
+
+A special case:
+
+\[
+m = 0, \quad \sigma^2 = 1
+\]
+
+%-------------------------------------------------
+\subsection{Standard Calculation Forms}
+
+Gaussian integrals are complex, so standard functions are used.
+
+%-------------------------------------------------
+\subsubsection{Error Function ($erf$)}
+
+\[
+erf(x) = \frac{2}{\sqrt{\pi}}
+\int_{0}^{x} \exp(-t^2)\, dt
+\]
+
+%-------------------------------------------------
+\subsubsection{Complementary Error Function ($erfc$)}
+
+\[
+erfc(x) = 1 - erf(x)
+\]
+
+\[
+erfc(x) = \frac{2}{\sqrt{\pi}}
+\int_{x}^{\infty} \exp(-t^2)\, dt
+\]
+
+%-------------------------------------------------
+\subsubsection{$\Phi$-Function (Standard Normal CDF)}
+
+\[
+\Phi(x) = \frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{x}
+\exp\left(-\frac{t^2}{2}\right)\, dt
+\]
+
+%-------------------------------------------------
+\subsubsection{Q-Function (Gaussian Tail)}
+
+\[
+Q(x) = \frac{1}{\sqrt{2\pi}}
+\int_{x}^{\infty}
+\exp\left(-\frac{t^2}{2}\right)\, dt
+\]
+
+%-------------------------------------------------
+\subsection{Key Identities}
+
+\[
+Q(x) = 1 - \Phi(x)
+\]
+
+\[
+F_X(x) = \Phi\left(\frac{x-m}{\sigma}\right)
+\]
+
+\[
+Pr(X > x) = Q\left(\frac{x-m}{\sigma}\right)
+\]
+
+\[
+F_X(x) = 1 - Q\left(\frac{x-m}{\sigma}\right)
+\]
+
+%=================================================
+\section{Worked Example: Gaussian Probabilities}
+
+\textbf{Problem:}
+
+\[
+f_X(x) =
+\frac{1}{\sqrt{8\pi}}
+\exp\left(-\frac{(x+3)^2}{8}\right)
+\]
+
+Find probabilities in terms of Q-functions.
+
+%-------------------------------------------------
+\subsection{Step 1: Identification of Parameters}
+
+Compare with:
+
+\[
+f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left(-\frac{(x-m)^2}{2\sigma^2}\right)
+\]
+
+Thus:
+
+\[
+m = -3
+\]
+
+\[
+2\sigma^2 = 8 \Rightarrow \sigma^2=4 \Rightarrow \sigma=2
+\]
+
+%-------------------------------------------------
+\subsection{Step 2: Solutions}
+
+\subsubsection{$Pr(X \le 0)$}
+
+\[
+F_X(0)=\Phi\left(\frac{0-(-3)}{2}\right)
+=\Phi\left(\frac{3}{2}\right)
+\]
+
+In Q-function form:
+
+\[
+1-Q\left(\frac{3}{2}\right)
+\]
+
+%-------------------------------------------------
+\subsubsection{$Pr(X>4)$}
+
+\[
+Q\left(\frac{4-(-3)}{2}\right)
+=Q\left(\frac{7}{2}\right)
+\]
+
+%-------------------------------------------------
+\subsubsection{$Pr(|X+3|<2)$}
+
+\[
+|X+3|<2
+\Rightarrow -2<X+3<2
+\Rightarrow -5<X<-1
+\]
+
+Thus:
+
+\[
+Pr(|X+3|<2)=F_X(-1)-F_X(-5)
+\]
+
+\[
+=\Phi(1)-\Phi(-1)
+\]
+
+Using symmetry:
+
+\[
+Pr(|X+3|<2)=2\Phi(1)-1
+\]
+
+\[
+=1-2Q(1)
+\]
+
+%=================================================
+\section{Worked Example: CDF Analysis}
+
+\textbf{Problem:}
+
+\[
+F_X(x)=x^2, \quad 0\le x\le 1
+\]
+
+and:
+
+\[
+F_X(x)=1, \quad x>1
+\]
+
+%-------------------------------------------------
+\subsection{Step-by-Step Analysis}
+
+\subsubsection{PDF}
+
+\[
+f_X(x)=\frac{d}{dx}(x^2)=2x
+\]
+
+%-------------------------------------------------
+\subsubsection{Mean}
+
+\[
+\mu_X=\int_{0}^{1}x(2x)\,dx
+\]
+
+\[
+=\int_{0}^{1}2x^2\,dx
+=\left[\frac{2x^3}{3}\right]_0^1
+=\frac{2}{3}
+\]
+
+%-------------------------------------------------
+\subsubsection{Variance}
+
+\[
+\sigma_X^2=\int_{0}^{1}x^2(2x)\,dx-\mu_X^2
+\]
+
+\[
+=\frac{1}{2}-\left(\frac{2}{3}\right)^2
+\]
+
+\[
+=\frac{1}{18}
+\]
+
+%-------------------------------------------------
+\subsubsection{Skewness}
+
+\[
+c_s=-\frac{2\sqrt{2}}{5}
+\]
+
+Left-skewed distribution.
+
+%-------------------------------------------------
+\subsubsection{Kurtosis}
+
+\[
+c_k=\frac{12}{5}
+\]
+
+Platykurtic distribution.
+
+%=================================================
+\section{Engineering Applications of Probability Models}
+
+Uncertainty is inherent in computing and hardware.
+
+\begin{itemize}
+    \item \textbf{Network Systems:} Packet delay modeled using latency statistics.
+    \item \textbf{Electronic Circuits:} Thermal noise voltage is Gaussian.
+    \item \textbf{IoT and Robotics:} Kalman filters estimate true location from noisy sensor data.
+    \item \textbf{Image Processing:} Denoising algorithms use Gaussian priors.
+\end{itemize}
+
+%-------------------------------------------------
+\end{document}
