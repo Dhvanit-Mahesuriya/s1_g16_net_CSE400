@@ -1,0 +1,3 @@
+Assume you are expert scribe generator. Generate a lecture scribe suitable for exam preparation for CSE400 Lecture 4: Joint Probability and Conditional Probability.
+While writing the scribe, do reason step by step through definitions, assumptions, proofs, derivations, and worked example solutions exactly as presented in the provided context. Include this reasoning in the scribe so that the logical flow is clear for revision. Use only the provided lecture slides and relevant textbook excerpts. Don't mention any material, explanations or examples that are not present in the context.
+Organize the scribe clearly in a formal academic style. 
