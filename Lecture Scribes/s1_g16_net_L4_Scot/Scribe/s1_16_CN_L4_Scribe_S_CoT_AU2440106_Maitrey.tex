@@ -1,0 +1,275 @@
+\documentclass[12pt,a4paper]{article}
+
+% ===================== PACKAGES =====================
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% ===================== FORMATTING =====================
+\setstretch{1.2}
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CSE400}
+\lhead{Lecture 4 Scribe}
+\cfoot{\thepage}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+% ===================== DOCUMENT =====================
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{CSE400 -- Fundamentals of Probability in Computing}}\\[4pt]
+    {\large Lecture 4: Joint Probability and Conditional Probability}\\[6pt]
+    \textit{Prepared for Exam Revision}
+\end{center}
+
+\vspace{1em}
+
+% =====================================================
+\section{Introduction to Probability Theory}
+
+This lecture establishes the foundational framework required to define joint probability and conditional probability. The development proceeds through precise definitions, probability axioms, and their consequences.
+
+% =====================================================
+\section{Experiments, Outcomes, and Events}
+
+\subsection{Experiment}
+
+\textbf{Definition:}  
+An \textit{experiment} $(E)$ is a procedure that we perform which produces some result.
+
+\textbf{Example:}  
+Tossing a coin five times, denoted as $E_5$.
+
+\textbf{Logical Role:}  
+An experiment defines the probabilistic setting. Probabilities are assigned only after the experiment is specified.
+
+% -----------------------------------------------------
+\subsection{Outcome}
+
+\textbf{Definition:}  
+An \textit{outcome} $(\xi)$ is a possible result of an experiment.
+
+\textbf{Example:}
+\[
+\xi_1 = \text{HHTHT}
+\]
+
+\textbf{Logical Role:}  
+Each outcome represents one complete realization of the experiment.
+
+% -----------------------------------------------------
+\subsection{Event}
+
+\textbf{Definition:}  
+An \textit{event} is a certain set of outcomes of an experiment.
+
+\textbf{Example:}  
+Let $C$ be the event in experiment $E_5$ defined as:
+\[
+C = \{\text{all outcomes consisting of an even number of heads}\}
+\]
+
+\textbf{Reasoning:}  
+An event is a subset of the sample space and groups outcomes based on a condition of interest.
+
+% =====================================================
+\section{Sample Space}
+
+\subsection{Definition}
+
+The \textit{sample space} $(S)$ is the collection of all possible distinct outcomes of an experiment.
+
+\textbf{Properties:}
+\begin{itemize}
+    \item Mutually Exclusive: Only one outcome can occur at a time.
+    \item Collectively Exhaustive: No possible outcome lies outside the sample space.
+\end{itemize}
+
+% -----------------------------------------------------
+\subsection{Types of Sample Spaces}
+
+The sample space may be:
+\begin{itemize}
+    \item Discrete
+    \item Countably Infinite
+    \item Continuous
+\end{itemize}
+
+\textbf{Examples listed:}
+\begin{itemize}
+    \item Flipping a fair coin once
+    \item Rolling a cubical die
+    \item Rolling two dice
+    \item Flipping a coin until tails occurs
+    \item Random number generator in $[0,1)$
+\end{itemize}
+
+The structure of the sample space determines how probability axioms are applied.
+
+% =====================================================
+\section{Probability and Axioms}
+
+\subsection{Definition of Probability}
+
+Probability is:
+\begin{itemize}
+    \item A measure of the likelihood of various events, or
+    \item A function assigning a numerical value to an event.
+\end{itemize}
+
+% -----------------------------------------------------
+\subsection{Probability Axioms}
+
+The axioms are taken to be self-evident.
+
+For any event $A$:
+
+\begin{enumerate}
+    \item \textbf{Boundedness}
+    \[
+    0 \leq \Pr(A) \leq 1
+    \]
+
+    \item \textbf{Certain Event}
+    \[
+    \Pr(S) = 1
+    \]
+
+    \item \textbf{Additivity for Mutually Exclusive Events}
+    
+    If $A \cap B = \varnothing$, then
+    \[
+    \Pr(A \cup B) = \Pr(A) + \Pr(B)
+    \]
+
+    \item \textbf{Countable Additivity}
+    \[
+    \Pr\left(\bigcup_{i=1}^{\infty} A_i\right)
+    =
+    \sum_{i=1}^{\infty} \Pr(A_i)
+    \]
+\end{enumerate}
+
+These axioms define the mathematical behavior of probability.
+
+% =====================================================
+\section{Corollary}
+
+\subsection{Corollary 2.1}
+
+For a finite number $M$ of mutually exclusive events:
+\[
+\Pr\left(\bigcup_{i=1}^{M} A_i\right)
+=
+\sum_{i=1}^{M} \Pr(A_i)
+\]
+
+Axiom 3 reduces to this corollary when the sample space is finite.
+
+% =====================================================
+\section{Propositions}
+
+\subsection{Proposition 2.1 (Complement Rule)}
+
+\[
+\Pr(A^c) = 1 - \Pr(A)
+\]
+
+\textbf{Reasoning:}
+\begin{enumerate}
+    \item $A$ and $A^c$ are mutually exclusive.
+    \item $A \cup A^c = S$.
+    \item Since $\Pr(S) = 1$, subtracting $\Pr(A)$ gives $\Pr(A^c)$.
+\end{enumerate}
+
+% -----------------------------------------------------
+\subsection{Proposition 2.2 (Monotonicity)}
+
+If $A \subset B$, then
+\[
+\Pr(A) \leq \Pr(B)
+\]
+
+Since $B$ contains all outcomes of $A$, its probability cannot be smaller.
+
+% =====================================================
+\section{Joint Probability}
+
+\subsection{Definition}
+
+The joint probability of events $A$ and $B$ is:
+\[
+\Pr(A \cap B)
+\]
+
+It represents the probability that both $A$ and $B$ occur simultaneously.
+
+\subsection{Examples Mentioned}
+
+\begin{itemize}
+    \item Card Deck Example
+    \item Costume Party Example
+\end{itemize}
+
+In each case:
+\begin{enumerate}
+    \item Define individual events.
+    \item Identify their intersection.
+    \item Assign probability to the intersection.
+\end{enumerate}
+
+% =====================================================
+\section{Conditional Probability}
+
+\subsection{Definition}
+
+For $\Pr(B) > 0$:
+\[
+\Pr(A \mid B) = \frac{\Pr(A \cap B)}{\Pr(B)}
+\]
+
+\subsection{Step-by-Step Interpretation}
+
+\begin{enumerate}
+    \item Occurrence of $B$ restricts the sample space to $B$.
+    \item Favorable outcomes are in $A \cap B$.
+    \item Division by $\Pr(B)$ normalizes probability in the reduced space.
+\end{enumerate}
+
+\subsection{Examples Mentioned}
+
+\begin{itemize}
+    \item Cards without replacement
+    \item Game of Poker
+    \item The Missing Key
+\end{itemize}
+
+Each example:
+\begin{enumerate}
+    \item Identifies the conditioning event.
+    \item Restricts the sample space.
+    \item Applies the conditional probability formula.
+\end{enumerate}
+
+% =====================================================
+\section{Key Exam Points}
+
+\begin{itemize}
+    \item Clearly distinguish experiment, outcome, event, and sample space.
+    \item State axioms before using them.
+    \item Joint probability corresponds to intersection.
+    \item Conditional probability is normalized joint probability.
+    \item Ensure $\Pr(B) > 0$ before computing $\Pr(A \mid B)$.
+\end{itemize}
+
+\end{document}
