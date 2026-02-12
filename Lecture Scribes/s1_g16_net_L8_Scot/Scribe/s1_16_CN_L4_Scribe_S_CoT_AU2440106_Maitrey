@@ -1,0 +1,398 @@
+\documentclass[12pt,a4paper]{article}
+
+% -------------------- PACKAGES --------------------
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\onehalfspacing
+
+% -------------------- TITLE --------------------
+\title{\textbf{CSE400 -- Fundamentals of Probability in Computing} \\[4pt]
+\large Lecture 8: Gaussian Distribution \\[6pt]
+\small Prepared from Lecture Slides: L8\_S1\_A.pdf}
+\author{}
+\date{}
+
+% -------------------- DOCUMENT --------------------
+\begin{document}
+
+\maketitle
+\hrule
+\vspace{1em}
+
+% ==================================================
+\section{Foundations: Moments of a Continuous Random Variable}
+
+\subsection{n-th Order Central Moment}
+
+For a continuous random variable $X$ with mean $\mu_X$:
+
+\[
+\mathbb{E}[(X-\mu_X)^n]
+=
+\int (x-\mu_X)^n f_X(x)\,dx
+\]
+
+For the discrete case:
+
+\[
+\mathbb{E}[(X-\mu_X)^n]
+=
+\sum_k (x_k-\mu_X)^n p_X(x_k)
+\]
+
+% --------------------------------------------------
+\subsection{Evaluation for Specific Orders}
+
+\subsubsection*{(i) Zeroth Order ($n=0$)}
+
+\[
+\mathbb{E}[(X-\mu_X)^0]
+=
+\mathbb{E}[1]
+=
+1
+\]
+
+\subsubsection*{(ii) First Order ($n=1$)}
+
+\[
+\mathbb{E}[X-\mu_X]
+=
+\mathbb{E}[X] - \mu_X
+\]
+
+Since $\mathbb{E}[X]=\mu_X$,
+
+\[
+\mathbb{E}[X-\mu_X]=0
+\]
+
+\subsubsection*{(iii) Second Order ($n=2$): Variance}
+
+\[
+\sigma_X^2
+=
+\mathbb{E}[(X-\mu_X)^2]
+\]
+
+Expand:
+
+\[
+(X-\mu_X)^2
+=
+X^2 - 2\mu_X X + \mu_X^2
+\]
+
+Taking expectation:
+
+\[
+\mathbb{E}[X^2]
+-
+2\mu_X \mathbb{E}[X]
++
+\mu_X^2
+\]
+
+Since $\mathbb{E}[X]=\mu_X$,
+
+\[
+\sigma_X^2
+=
+\mathbb{E}[X^2] - \mu_X^2
+\]
+
+% --------------------------------------------------
+\subsection{Higher Order Central Moments}
+
+\subsubsection*{Skewness ($n=3$)}
+
+\[
+C_s
+=
+\frac{\mathbb{E}[(X-\mu_X)^3]}{\sigma_X^3}
+\]
+
+\begin{itemize}
+\item $C_s > 0$ $\rightarrow$ Right-skewed PDF
+\item $C_s < 0$ $\rightarrow$ Left-skewed PDF
+\end{itemize}
+
+\subsubsection*{Kurtosis ($n=4$)}
+
+\[
+C_k
+=
+\frac{\mathbb{E}[(X-\mu_X)^4]}{\sigma_X^4}
+\]
+
+Large kurtosis indicates a sharp peak near the mean.
+
+% --------------------------------------------------
+\subsection{Linearity of Expectation}
+
+For constants $a,b$:
+
+\[
+\mathbb{E}[aX+b]
+=
+a\mathbb{E}[X] + b
+\]
+
+For a sum of functions:
+
+\[
+\mathbb{E}\left[\sum_{k=1}^{N} g_k(X)\right]
+=
+\sum_{k=1}^{N} \mathbb{E}[g_k(X)]
+\]
+
+Also,
+
+\[
+\mathbb{E}[X]
+=
+\int x f_X(x)\,dx
+\]
+
+% ==================================================
+\section{Gaussian Random Variable}
+
+\subsection{Definition}
+
+A Gaussian random variable has PDF:
+
+\[
+f_X(x)
+=
+\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left(
+-\frac{(x-m)^2}{2\sigma^2}
+\right)
+\]
+
+Notation:
+
+\[
+X \sim \mathcal{N}(m,\sigma^2)
+\]
+
+where:
+\begin{itemize}
+\item $m$ = mean
+\item $\sigma^2$ = variance
+\end{itemize}
+
+% ==================================================
+\section{Standard Forms}
+
+\subsection{Error Function}
+
+\[
+\text{erf}(x)
+=
+\frac{2}{\sqrt{\pi}}
+\int_0^x e^{-t^2} dt
+\]
+
+\subsection{Complementary Error Function}
+
+\[
+\text{erfc}(x)
+=
+1 - \text{erf}(x)
+=
+\frac{2}{\sqrt{\pi}}
+\int_x^\infty e^{-t^2} dt
+\]
+
+\subsection{$\Phi$-Function (CDF of Standard Normal)}
+
+\[
+\Phi(x)
+=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{x}
+e^{-t^2/2} dt
+\]
+
+\subsection{$Q$-Function (Gaussian Tail Function)}
+
+\[
+Q(x)
+=
+\frac{1}{\sqrt{2\pi}}
+\int_x^{\infty}
+e^{-t^2/2} dt
+\]
+
+\[
+Q(x)=1-\Phi(x)
+\]
+
+% ==================================================
+\section{Relation Between $\Phi$ and $Q$}
+
+\subsection{Evaluating the CDF}
+
+\[
+F_X(x)
+=
+\int_{-\infty}^{x}
+\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left(
+-\frac{(y-m)^2}{2\sigma^2}
+\right) dy
+\]
+
+Let
+
+\[
+t=\frac{y-m}{\sigma}
+\]
+
+Then
+
+\[
+F_X(x)
+=
+\Phi\left(\frac{x-m}{\sigma}\right)
+\]
+
+\subsection{Tail Probability}
+
+\[
+P(X>x)
+=
+Q\left(\frac{x-m}{\sigma}\right)
+\]
+
+Gay identities:
+
+\[
+Q(x)=1-\Phi(x)
+\]
+
+\[
+F_X(x)
+=
+1 - Q\left(\frac{x-m}{\sigma}\right)
+\]
+
+% ==================================================
+\section{Worked Example}
+
+Given:
+
+\[
+f_X(x)
+=
+\frac{1}{\sqrt{8\pi}}
+\exp\left(
+-\frac{(x+3)^2}{8}
+\right)
+\]
+
+Comparing with Gaussian form:
+
+\[
+m=-3,
+\quad
+2\sigma^2=8
+\Rightarrow
+\sigma^2=4
+\Rightarrow
+\sigma=2
+\]
+
+Thus:
+
+\[
+X \sim \mathcal{N}(-3,4)
+\]
+
+\subsection*{(i) $P(X \le 0)$}
+
+\[
+P(X \le 0)
+=
+\Phi\left(\frac{0-(-3)}{2}\right)
+=
+\Phi\left(\frac{3}{2}\right)
+\]
+
+\subsection*{(ii) $P(X>4)$}
+
+\[
+P(X>4)
+=
+Q\left(\frac{4-(-3)}{2}\right)
+=
+Q\left(\frac{7}{2}\right)
+\]
+
+\subsection*{(iii) $P(|X+3|<2)$}
+
+\[
+-2 < X+3 < 2
+\]
+
+\[
+-5 < X < -1
+\]
+
+\[
+P(-5<X<-1)
+=
+\Phi\left(\frac{-1+3}{2}\right)
+-
+\Phi\left(\frac{-5+3}{2}\right)
+\]
+
+\subsection*{(iv) $P(|X-2|>1)$}
+
+\[
+X<1 \quad \text{or} \quad X>3
+\]
+
+\[
+P(X<1) + P(X>3)
+\]
+
+% ==================================================
+\section{Exam-Oriented Summary}
+
+\[
+f_X(x)
+=
+\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left(-\frac{(x-m)^2}{2\sigma^2}\right)
+\]
+
+\[
+Z=\frac{X-m}{\sigma}
+\]
+
+\[
+F_X(x)=\Phi\left(\frac{x-m}{\sigma}\right)
+\]
+
+\[
+P(X>x)=Q\left(\frac{x-m}{\sigma}\right)
+\]
+
+\[
+Q(x)=1-\Phi(x)
+\]
+
+\end{document}
