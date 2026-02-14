@@ -1,0 +1,522 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{
+CSE400 -- Fundamentals of Probability in Computing\\
+Lecture 11 \& 12: Transformation of Random Variables
+}
+\author{Instructor: Dhaval Patel, PhD}
+\date{February 10, 2026}
+
+\begin{document}
+
+\maketitle
+
+%------------------------------------------------
+
+\section{Introduction and Objectives}
+
+The primary objective of this lecture is the learning of transformation techniques for random variables.  
+This involves determining the probability distribution of a new random variable $(Y)$ derived from an existing one $(X)$.
+
+\subsection{Core Assumptions}
+
+\begin{itemize}
+    \item The Probability Density Function (PDF), $f_X(x)$, of the original random variable $X$ is known \textit{a priori}.
+    \item The Cumulative Distribution Function (CDF), $F_X(x)$, of $X$ is also known.
+    \item A new random variable $Y$ is defined by a functional relationship:
+    \[
+    y = g(x).
+    \]
+\end{itemize}
+
+\subsection{Objectives}
+
+\begin{itemize}
+    \item Determine how to find the new distribution $f_Y(y)$ or $F_Y(y)$.
+    \item Understand joint transformations for two random variables.
+\end{itemize}
+
+%------------------------------------------------
+
+\section{Transformation of a Single Random Variable}
+
+The derivation of the new PDF follows a systematic two-step process.
+
+\subsection{Step 1: Find the Cumulative Distribution Function (CDF)}
+
+The CDF of the new variable $Y$, $F_Y(y)$, is the probability that $Y$ is less than or equal to a value $y$:
+
+\[
+F_Y(y) = \Pr(Y \le y) = \Pr(g(x) \le y)
+\]
+
+If the function $g(x)$ is monotonically increasing:
+
+\[
+F_Y(y) = \Pr(x \le g^{-1}(y)) = F_X(g^{-1}(y))
+\]
+
+If the function $g(x)$ is decreasing:
+
+\[
+F_Y(y) = \Pr(x \ge g^{-1}(y)) = 1 - F_X(g^{-1}(y))
+\]
+
+%------------------------------------------------
+
+\subsection{Step 2: Differentiate to Find the PDF}
+
+To find the PDF $f_Y(y)$, differentiate the CDF with respect to $y$:
+
+\[
+f_Y(y) = \frac{d}{dy}\Big[F_X(g^{-1}(y))\Big]
+\]
+
+Using the chain rule, this results in:
+
+\[
+f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{d}{dy}g^{-1}(y)
+\]
+
+Or more generally, accounting for both increasing and decreasing functions:
+
+\[
+f_Y(y) = f_X(x)\left|\frac{dx}{dy}\right|_{x=g^{-1}(y)}
+\]
+
+%------------------------------------------------
+
+\section{Illustrative Example: Uniform to Sine Transformation}
+
+\textbf{Problem:}  
+Given $X$ is a uniformly distributed random variable on the interval $(-1,1)$, find the PDF of
+
+\[
+Y = \sin\left(\frac{\pi x}{2}\right).
+\]
+
+\subsection{Solution}
+
+\textbf{Original PDF of $X$:}
+
+\[
+f_X(x) = \frac{1}{2}, \qquad -1 < x < 1,
+\]
+and $0$ otherwise.
+
+\textbf{Inverse Function:}
+
+\[
+x = \frac{2}{\pi}\sin^{-1}(y).
+\]
+
+\textbf{Derivative:}
+
+\[
+\frac{dx}{dy} = \frac{2}{\pi}\cdot \frac{1}{\sqrt{1-y^2}}.
+\]
+
+\textbf{Resulting PDF:}
+
+\[
+f_Y(y) = \frac{1}{2}\cdot \frac{2}{\pi}\cdot \frac{1}{\sqrt{1-y^2}}
+       = \frac{1}{\pi\sqrt{1-y^2}}.
+\]
+
+\textbf{Limits:}
+
+For $x=-1$, $y=\sin(-\pi/2)=-1$.  
+For $x=1$, $y=1$.  
+
+Thus,
+
+\[
+-1 < y < 1.
+\]
+
+%------------------------------------------------
+
+\section{Function of Two Random Variables}
+
+This section addresses joint transformations where
+
+\[
+Z = g(X,Y).
+\]
+
+%------------------------------------------------
+
+\subsection{Detailed Derivation: Sum of Two RVs ($Z=X+Y$)}
+
+To find the PDF $f_Z(z)$ for the sum $Z=X+Y$:
+
+\subsubsection{Determine the CDF}
+
+\[
+F_Z(z) = \Pr(X+Y \le z).
+\]
+
+\subsubsection{Set up the Double Integral}
+
+\[
+F_Z(z) = \int_{-\infty}^{\infty}\int_{-\infty}^{z-y}
+f_{XY}(x,y)\,dx\,dy.
+\]
+
+%------------------------------------------------
+
+\subsubsection{Application of Leibniz's Rule}
+
+To differentiate the integral, we use Leibniz's rule:
+
+\[
+\frac{d}{dx}\left[\int_{a(x)}^{b(x)} h(x,y)\,dy\right]
+=
+\frac{d}{dx}b(x)\cdot h(x,b(x))
+-
+\frac{d}{dx}a(x)\cdot h(x,a(x))
++
+\int_{a(x)}^{b(x)}\frac{\partial}{\partial x}h(x,y)\,dy.
+\]
+
+Applying this yields the convolution integral:
+
+\[
+f_Z(z) = \int_{-\infty}^{\infty} f_{XY}(z-y,y)\,dy.
+\]
+
+If $X$ and $Y$ are independent:
+
+\[
+f_Z(z) = \int_{-\infty}^{\infty} f_X(x)\,f_Y(z-x)\,dx.
+\]
+
+%------------------------------------------------
+
+\section{Advanced Applications}
+
+\subsection{Sum of Independent Normal Random Variables}
+
+Assumptions:
+
+\[
+X\sim N(0,1), \qquad Y\sim N(0,1)
+\]
+
+and $X,Y$ are independent.
+
+By substituting the Gaussian PDF into the convolution integral, it can be shown that:
+
+\[
+Z=X+Y\sim N(0,2).
+\]
+
+Thus, the sum follows a normal distribution with variance:
+
+\[
+\sigma^2 = 2.
+\]
+
+%------------------------------------------------
+
+\subsection{Sum of Independent Exponential Random Variables}
+
+Assumptions:  
+$X$ and $Y$ are exponential random variables with parameter $\lambda$.
+
+Method: Use convolution with
+
+\[
+f_X(x)=\lambda e^{-\lambda x},
+\qquad
+f_Y(y)=\lambda e^{-\lambda y}.
+\]
+
+Integral form:
+
+\[
+f_Z(z)=\int_0^z \lambda e^{-\lambda x}\cdot
+\lambda e^{-\lambda(z-x)}\,dx.
+\]
+
+%------------------------------------------------
+
+\section{Summary of Other Transformations}
+
+\begin{itemize}
+    \item Difference: $Z=X-Y$
+    \item Ratio: $Z=X/Y$
+    \item Square Root of Sum of Squares:
+    \[
+    R=\sqrt{X^2+Y^2}.
+    \]
+\end{itemize}
+
+%------------------------------------------------
+
+\end{document}
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{
+CSE400 -- Fundamentals of Probability in Computing\\
+Lecture 11 \& 12: Transformation of Random Variables
+}
+\author{Instructor: Dhaval Patel, PhD}
+\date{February 10, 2026}
+
+\begin{document}
+
+\maketitle
+
+%------------------------------------------------
+
+\section{Introduction and Objectives}
+
+The primary objective of this lecture is the learning of transformation techniques for random variables.  
+This involves determining the probability distribution of a new random variable $(Y)$ derived from an existing one $(X)$.
+
+\subsection{Core Assumptions}
+
+\begin{itemize}
+    \item The Probability Density Function (PDF), $f_X(x)$, of the original random variable $X$ is known \textit{a priori}.
+    \item The Cumulative Distribution Function (CDF), $F_X(x)$, of $X$ is also known.
+    \item A new random variable $Y$ is defined by a functional relationship:
+    \[
+    y = g(x).
+    \]
+\end{itemize}
+
+\subsection{Objectives}
+
+\begin{itemize}
+    \item Determine how to find the new distribution $f_Y(y)$ or $F_Y(y)$.
+    \item Understand joint transformations for two random variables.
+\end{itemize}
+
+%------------------------------------------------
+
+\section{Transformation of a Single Random Variable}
+
+The derivation of the new PDF follows a systematic two-step process.
+
+\subsection{Step 1: Find the Cumulative Distribution Function (CDF)}
+
+The CDF of the new variable $Y$, $F_Y(y)$, is the probability that $Y$ is less than or equal to a value $y$:
+
+\[
+F_Y(y) = \Pr(Y \le y) = \Pr(g(x) \le y)
+\]
+
+If the function $g(x)$ is monotonically increasing:
+
+\[
+F_Y(y) = \Pr(x \le g^{-1}(y)) = F_X(g^{-1}(y))
+\]
+
+If the function $g(x)$ is decreasing:
+
+\[
+F_Y(y) = \Pr(x \ge g^{-1}(y)) = 1 - F_X(g^{-1}(y))
+\]
+
+%------------------------------------------------
+
+\subsection{Step 2: Differentiate to Find the PDF}
+
+To find the PDF $f_Y(y)$, differentiate the CDF with respect to $y$:
+
+\[
+f_Y(y) = \frac{d}{dy}\Big[F_X(g^{-1}(y))\Big]
+\]
+
+Using the chain rule, this results in:
+
+\[
+f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{d}{dy}g^{-1}(y)
+\]
+
+Or more generally, accounting for both increasing and decreasing functions:
+
+\[
+f_Y(y) = f_X(x)\left|\frac{dx}{dy}\right|_{x=g^{-1}(y)}
+\]
+
+%------------------------------------------------
+
+\section{Illustrative Example: Uniform to Sine Transformation}
+
+\textbf{Problem:}  
+Given $X$ is a uniformly distributed random variable on the interval $(-1,1)$, find the PDF of
+
+\[
+Y = \sin\left(\frac{\pi x}{2}\right).
+\]
+
+\subsection{Solution}
+
+\textbf{Original PDF of $X$:}
+
+\[
+f_X(x) = \frac{1}{2}, \qquad -1 < x < 1,
+\]
+and $0$ otherwise.
+
+\textbf{Inverse Function:}
+
+\[
+x = \frac{2}{\pi}\sin^{-1}(y).
+\]
+
+\textbf{Derivative:}
+
+\[
+\frac{dx}{dy} = \frac{2}{\pi}\cdot \frac{1}{\sqrt{1-y^2}}.
+\]
+
+\textbf{Resulting PDF:}
+
+\[
+f_Y(y) = \frac{1}{2}\cdot \frac{2}{\pi}\cdot \frac{1}{\sqrt{1-y^2}}
+       = \frac{1}{\pi\sqrt{1-y^2}}.
+\]
+
+\textbf{Limits:}
+
+For $x=-1$, $y=\sin(-\pi/2)=-1$.  
+For $x=1$, $y=1$.  
+
+Thus,
+
+\[
+-1 < y < 1.
+\]
+
+%------------------------------------------------
+
+\section{Function of Two Random Variables}
+
+This section addresses joint transformations where
+
+\[
+Z = g(X,Y).
+\]
+
+%------------------------------------------------
+
+\subsection{Detailed Derivation: Sum of Two RVs ($Z=X+Y$)}
+
+To find the PDF $f_Z(z)$ for the sum $Z=X+Y$:
+
+\subsubsection{Determine the CDF}
+
+\[
+F_Z(z) = \Pr(X+Y \le z).
+\]
+
+\subsubsection{Set up the Double Integral}
+
+\[
+F_Z(z) = \int_{-\infty}^{\infty}\int_{-\infty}^{z-y}
+f_{XY}(x,y)\,dx\,dy.
+\]
+
+%------------------------------------------------
+
+\subsubsection{Application of Leibniz's Rule}
+
+To differentiate the integral, we use Leibniz's rule:
+
+\[
+\frac{d}{dx}\left[\int_{a(x)}^{b(x)} h(x,y)\,dy\right]
+=
+\frac{d}{dx}b(x)\cdot h(x,b(x))
+-
+\frac{d}{dx}a(x)\cdot h(x,a(x))
++
+\int_{a(x)}^{b(x)}\frac{\partial}{\partial x}h(x,y)\,dy.
+\]
+
+Applying this yields the convolution integral:
+
+\[
+f_Z(z) = \int_{-\infty}^{\infty} f_{XY}(z-y,y)\,dy.
+\]
+
+If $X$ and $Y$ are independent:
+
+\[
+f_Z(z) = \int_{-\infty}^{\infty} f_X(x)\,f_Y(z-x)\,dx.
+\]
+
+%------------------------------------------------
+
+\section{Advanced Applications}
+
+\subsection{Sum of Independent Normal Random Variables}
+
+Assumptions:
+
+\[
+X\sim N(0,1), \qquad Y\sim N(0,1)
+\]
+
+and $X,Y$ are independent.
+
+By substituting the Gaussian PDF into the convolution integral, it can be shown that:
+
+\[
+Z=X+Y\sim N(0,2).
+\]
+
+Thus, the sum follows a normal distribution with variance:
+
+\[
+\sigma^2 = 2.
+\]
+
+%------------------------------------------------
+
+\subsection{Sum of Independent Exponential Random Variables}
+
+Assumptions:  
+$X$ and $Y$ are exponential random variables with parameter $\lambda$.
+
+Method: Use convolution with
+
+\[
+f_X(x)=\lambda e^{-\lambda x},
+\qquad
+f_Y(y)=\lambda e^{-\lambda y}.
+\]
+
+Integral form:
+
+\[
+f_Z(z)=\int_0^z \lambda e^{-\lambda x}\cdot
+\lambda e^{-\lambda(z-x)}\,dx.
+\]
+
+%------------------------------------------------
+
+\section{Summary of Other Transformations}
+
+\begin{itemize}
+    \item Difference: $Z=X-Y$
+    \item Ratio: $Z=X/Y$
+    \item Square Root of Sum of Squares:
+    \[
+    R=\sqrt{X^2+Y^2}.
+    \]
+\end{itemize}
+
+%------------------------------------------------
+
+\end{document}
