@@ -1,0 +1,44 @@
+Generate a lecture scribe intended to serve as exam-oriented reference material for CSE 400.
+
+Use only the provided context (lecture slides and relevant textbook material). Do not introduce any material, definitions, examples, explanations, assumptions, intuition, or notation that are not explicitly present in the context.
+
+While writing the scribe, reproduce the lecture content faithfully and in the same scope and structure as taught. Where the context contains definitions, assumptions, propositions, theorems, proofs, derivations, or worked examples, reconstruct them step by step exactly as they appear, making all logical steps explicit so that the reasoning can be followed during exam revision. Do not add reasoning where none is present in the context.
+
+Include proofs, derivations, and worked examples only if they are present in the provided context, and reproduce them without modification, simplification, or re-interpretation.
+
+Organize the scribe clearly using appropriate sectioning and headings so that it can be reliably used for closed-notes exam preparation.
+
+Prioritize correctness, faithfulness to the lecture and textbook materials, and explicit logical flow. Do not invent or infer content beyond the provided context.
+
+
+
+this is the context of L4:
+For Lecture–4 of CSE 400 scheduled on 15th January, the class will proceed according to the following agenda:
+
+(1) Attendance
+Attendance will be taken at the beginning of the class. Please ensure punctuality.
+
+(2) Motivation through Engineering Applications
+
+Speech Recognition
+Radar Systems
+Communication Networks
+(3) Introduction to Probability Theory
+
+Random experiments, sample space, and events
+Axioms of probability
+Corollaries and propositions derived from the axioms
+Assigning probability: classical and relative frequency approaches
+(4) Joint Probability
+
+Motivation, notation, and key ideas
+Examples: Card deck example, Costume party example
+(5) Conditional Probability
+
+Motivation, notation, and core concepts
+Examples: Cards without replacement, Game of Poker, The missing key
+(6) Graded Class Participation
+Class participation based on the content covered during the lecture will be assessed.
+
+
+
