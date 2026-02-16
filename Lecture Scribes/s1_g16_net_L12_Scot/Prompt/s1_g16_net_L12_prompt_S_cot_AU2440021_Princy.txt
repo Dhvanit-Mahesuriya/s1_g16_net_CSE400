@@ -1,0 +1,2 @@
+prompt:
+generate a lecture scribe for this lecture pdf. the lecture scribe is a exam ready material for revision. so include the explanation of every concept in the lecture pdf and also give each and every derivation and calculations given in the pdf. if incomplete derivation or calculation then complete it. stick to the pdf strictly and do not include any unnecessary concepts outside the given lecture pdf. also do not give unnecessary motivations and elaborations which are not required. do not miss any concept or derivation or calculation to include in the lecture scribe.
