@@ -1,0 +1,351 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{CSE400 -- Fundamentals of Probability in Computing\\
+Lecture L11\_12: Transformation of Random Variables}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{1. Transformation of Random Variables}
+
+\subsection*{1.1 Definition}
+
+Let $X$ be a random variable with known distribution.
+
+Let
+\[
+Y = g(X)
+\]
+
+Objective: Find the distribution (PDF/PMF) of $Y$.
+
+\subsection*{1.2 Transformation -- Discrete Case}
+
+If $X$ is discrete with PMF $p_X(x)$, and
+\[
+Y = g(X),
+\]
+then
+\[
+p_Y(y) = P(Y = y)
+\]
+
+Since $Y = g(X)$,
+\[
+p_Y(y) = P(g(X) = y)
+\]
+
+Thus,
+\[
+p_Y(y) = \sum_{x: g(x)=y} p_X(x)
+\]
+
+\[
+\boxed{
+p_Y(y) = \sum_{x: g(x)=y} p_X(x)
+}
+\]
+
+\subsection*{1.3 Transformation -- Continuous Case}
+
+Let $X$ be continuous with PDF $f_X(x)$.
+
+Let
+\[
+Y = g(X)
+\]
+
+\subsubsection*{Case 1: Monotonic Transformation}
+
+Assume:
+\begin{itemize}
+    \item $g(\cdot)$ is one-to-one and differentiable.
+    \item Inverse exists: $x = g^{-1}(y)$.
+\end{itemize}
+
+\textbf{Step 1: CDF Method}
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+If $g$ is increasing:
+\[
+F_Y(y) = P(g(X) \le y)
+\]
+\[
+= P(X \le g^{-1}(y))
+\]
+\[
+= F_X(g^{-1}(y))
+\]
+
+\textbf{Step 2: Differentiate to get PDF}
+\[
+f_Y(y) = \frac{d}{dy} F_Y(y)
+\]
+\[
+= \frac{d}{dy} F_X(g^{-1}(y))
+\]
+
+Using chain rule:
+\[
+f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{d}{dy} g^{-1}(y)
+\]
+
+If decreasing, absolute value is required.
+
+\[
+\boxed{
+f_Y(y) =
+f_X(g^{-1}(y))
+\left|
+\frac{d}{dy} g^{-1}(y)
+\right|
+}
+\]
+
+\subsection*{1.4 Multiple Roots Case}
+
+If $g(x)$ is not one-to-one and
+\[
+y = g(x)
+\]
+has multiple solutions $x_1, x_2, \dots, x_n$, then
+
+\[
+\boxed{
+f_Y(y)
+=
+\sum_i
+f_X(x_i)
+\left|
+\frac{dx_i}{dy}
+\right|
+}
+\]
+
+\section*{2. Function of Two Random Variables}
+
+Let $X, Y$ have joint PDF:
+\[
+f_{X,Y}(x,y)
+\]
+
+Define:
+\[
+U = g_1(X,Y)
+\]
+\[
+V = g_2(X,Y)
+\]
+
+We want:
+\[
+f_{U,V}(u,v)
+\]
+
+\subsection*{2.1 One-to-One Transformation}
+
+Assume:
+\[
+x = x(u,v)
+\]
+\[
+y = y(u,v)
+\]
+
+\subsection*{2.2 Jacobian Determinant}
+
+\[
+J =
+\begin{vmatrix}
+\frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\
+\frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+\end{vmatrix}
+\]
+
+\[
+J =
+\frac{\partial x}{\partial u}\frac{\partial y}{\partial v}
+-
+\frac{\partial x}{\partial v}\frac{\partial y}{\partial u}
+\]
+
+\subsection*{2.3 Joint PDF Formula}
+
+\[
+\boxed{
+f_{U,V}(u,v)
+=
+f_{X,Y}(x(u,v), y(u,v))
+\cdot
+|J|
+}
+\]
+
+\section*{3. Illustrative Example: $Z = X + Y$}
+
+Given two continuous random variables $X$ and $Y$.
+
+Define:
+\[
+Z = X + Y
+\]
+
+\subsection*{3.1 Define Transformation}
+
+\[
+U = X + Y
+\]
+\[
+V = Y
+\]
+
+Then:
+\[
+X = U - V
+\]
+\[
+Y = V
+\]
+
+\subsection*{3.2 Jacobian}
+
+\[
+J =
+\begin{vmatrix}
+\frac{\partial X}{\partial U} & \frac{\partial X}{\partial V} \\
+\frac{\partial Y}{\partial U} & \frac{\partial Y}{\partial V}
+\end{vmatrix}
+\]
+
+\[
+\frac{\partial X}{\partial U} = 1
+\quad
+\frac{\partial X}{\partial V} = -1
+\]
+\[
+\frac{\partial Y}{\partial U} = 0
+\quad
+\frac{\partial Y}{\partial V} = 1
+\]
+
+\[
+J =
+\begin{vmatrix}
+1 & -1 \\
+0 & 1
+\end{vmatrix}
+\]
+
+\[
+J = (1)(1) - (-1)(0) = 1
+\]
+
+\[
+|J| = 1
+\]
+
+\subsection*{3.3 Joint PDF of $(U,V)$}
+
+\[
+f_{U,V}(u,v)
+=
+f_{X,Y}(u-v, v)
+\]
+
+\subsection*{3.4 Marginal PDF of $Z = U$}
+
+\[
+f_Z(u)
+=
+\int_{-\infty}^{\infty}
+f_{U,V}(u,v) \, dv
+\]
+
+\[
+=
+\int_{-\infty}^{\infty}
+f_{X,Y}(u-v, v) \, dv
+\]
+
+\[
+\boxed{
+f_Z(z)
+=
+\int_{-\infty}^{\infty}
+f_{X,Y}(z-y, y) \, dy
+}
+\]
+
+\subsection*{3.5 If $X$ and $Y$ are Independent}
+
+\[
+f_{X,Y}(x,y)
+=
+f_X(x) f_Y(y)
+\]
+
+\[
+f_Z(z)
+=
+\int_{-\infty}^{\infty}
+f_X(z-y) f_Y(y) \, dy
+\]
+
+\[
+\boxed{
+f_Z(z)
+=
+\int_{-\infty}^{\infty}
+f_X(z-y) f_Y(y) \, dy
+}
+\]
+
+This is the convolution of $f_X$ and $f_Y$.
+
+\section*{Final Summary (Exam Ready)}
+
+\[
+p_Y(y)
+=
+\sum_{x: g(x)=y} p_X(x)
+\]
+
+\[
+f_Y(y)
+=
+f_X(g^{-1}(y))
+\left|
+\frac{d}{dy} g^{-1}(y)
+\right|
+\]
+
+\[
+f_Y(y)
+=
+\sum_i
+f_X(x_i)
+\left|
+\frac{dx_i}{dy}
+\right|
+\]
+
+\[
+f_{U,V}(u,v)
+=
+f_{X,Y}(x(u,v), y(u,v))
+\cdot |J|
+\]
+
+\[
+f_Z(z)
+=
+\int_{-\infty}^{\infty}
+f_X(z-y) f_Y(y) dy
+\]
+
+\end{document}
