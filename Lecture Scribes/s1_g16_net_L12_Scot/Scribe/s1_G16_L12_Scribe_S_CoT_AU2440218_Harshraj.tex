@@ -1,0 +1,309 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\title{CSE400 -- Fundamentals of Probability in Computing}
+\author{Lecture 11--12: Transformation of Random Variables}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Transformation of Random Variables}
+
+\subsection*{Goal}
+
+Given a random variable $X$ with known PDF $f_X(x)$ and CDF $F_X(x)$, and a transformation
+
+\[
+Y = g(X)
+\]
+
+find the distribution of $Y$: $F_Y(y)$ and $f_Y(y)$.
+
+\subsection{Monotonic Transformation}
+
+Assume $g(x)$ is invertible.
+
+\subsubsection*{Step 1: CDF Method}
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Since $Y=g(X)$:
+
+\[
+F_Y(y) = P(g(X) \le y)
+\]
+
+If $g$ is increasing:
+
+\[
+F_Y(y) = P(X \le g^{-1}(y)) = F_X(g^{-1}(y))
+\]
+
+If $g$ is decreasing:
+
+\[
+F_Y(y) = P(X \ge g^{-1}(y)) = 1 - F_X(g^{-1}(y))
+\]
+
+\subsubsection*{Step 2: PDF via Differentiation}
+
+\[
+f_Y(y) = \frac{d}{dy}F_Y(y)
+\]
+
+For invertible $g$:
+
+\[
+f_Y(y) = f_X(g^{-1}(y)) \left| \frac{dx}{dy} \right|
+\]
+
+where
+
+\[
+x = g^{-1}(y)
+\]
+
+\subsubsection*{Notes}
+
+\begin{itemize}
+\item Limits must be transformed appropriately.
+\item Absolute value handles derivative sign.
+\item Applies when $f_X(x)$ is known a priori.
+\end{itemize}
+
+\section{Worked Example: Nonlinear Transformation}
+
+\subsection*{Given}
+
+\[
+X \sim \text{Uniform}(-1,1)
+\]
+
+\[
+f_X(x)=
+\begin{cases}
+\frac12, & -1<x<1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+Transformation:
+
+\[
+Y = \sin\left(\frac{\pi X}{2}\right)
+\]
+
+\subsection*{Step 1: Inverse Transformation}
+
+\[
+x = \frac{2}{\pi}\sin^{-1}(y)
+\]
+
+\subsection*{Step 2: Derivative}
+
+\[
+\frac{dx}{dy} = \frac{2}{\pi}\frac{1}{\sqrt{1-y^2}}
+\]
+
+\subsection*{Step 3: Apply Formula}
+
+\[
+f_Y(y) = f_X(x)\left|\frac{dx}{dy}\right|
+\]
+
+\[
+= \frac12 \cdot \frac{2}{\pi}\frac{1}{\sqrt{1-y^2}}
+\]
+
+\[
+\boxed{
+f_Y(y)=\frac{1}{\pi\sqrt{1-y^2}}, \quad -1<y<1
+}
+\]
+
+\section{Function of Two Random Variables}
+
+Let
+
+\[
+Z = g(X,Y)
+\]
+
+Examples:
+
+\begin{itemize}
+\item $Z = X + Y$
+\item $Z = X - Y$
+\item $Z = \dfrac{X}{Y}$
+\item $R = \sqrt{X^2 + Y^2}$
+\end{itemize}
+
+\section{Distribution of the Sum: $Z=X+Y$}
+
+\subsection*{CDF Approach}
+
+\[
+F_Z(z) = P(Z \le z)
+\]
+
+\[
+= P(X+Y \le z)
+\]
+
+\[
+= \iint_{x+y \le z} f_{XY}(x,y)\,dx\,dy
+\]
+
+\subsection*{PDF via Differentiation}
+
+\[
+f_Z(z)=\int_{-\infty}^{\infty} f_{XY}(x,z-x)\,dx
+\]
+
+\section{Convolution Formula (Independent Case)}
+
+If $X$ and $Y$ are independent,
+
+\[
+f_{XY}(x,y)=f_X(x)f_Y(y)
+\]
+
+then
+
+\[
+\boxed{
+f_Z(z)=\int_{-\infty}^{\infty} f_X(x)\,f_Y(z-x)\,dx
+}
+\]
+
+This is the \textbf{convolution integral}.
+
+\section{Special Case: Sum of Normal Random Variables}
+
+Given
+
+\[
+X \sim N(0,1), \quad Y \sim N(0,1)
+\]
+
+independent,
+
+\[
+f_Z(z)=\int_{-\infty}^{\infty}
+\frac{1}{\sqrt{2\pi}}e^{-x^2/2}
+\frac{1}{\sqrt{2\pi}}e^{-(z-x)^2/2}dx
+\]
+
+After simplification,
+
+\[
+\boxed{Z \sim N(0,2)}
+\]
+
+\section{Sum of Exponential Random Variables}
+
+If
+
+\[
+f_X(x)=\lambda e^{-\lambda x}, \quad x\ge0
+\]
+\[
+f_Y(y)=\lambda e^{-\lambda y}, \quad y\ge0
+\]
+
+then
+
+\[
+f_Z(z)=\int_0^z \lambda e^{-\lambda x}\lambda e^{-\lambda(z-x)} dx
+\]
+
+\[
+= \lambda^2 e^{-\lambda z}\int_0^z dx
+\]
+
+\[
+\boxed{
+f_Z(z)=\lambda^2 z e^{-\lambda z}, \quad z\ge0
+}
+\]
+
+\[
+f_Z(z)=0 \quad \text{otherwise}
+\]
+
+\section{Difference of Random Variables}
+
+For
+
+\[
+Z = X - Y
+\]
+
+\[
+F_Z(z)=P(X-Y\le z)
+\]
+
+\[
+= \iint_{x-y \le z} f_{XY}(x,y)\,dx\,dy
+\]
+
+PDF is obtained by differentiation.
+
+\section{Ratio Transformation}
+
+For
+
+\[
+Z=\frac{X}{Y}
+\]
+
+analysis depends on the sign of $Y$ (cases $Y>0$ and $Y<0$).
+
+\section{Radial Transformation Example}
+
+\[
+R=\sqrt{X^2+Y^2}
+\]
+
+Find $f_R(r)$.
+
+\section{Leibniz Rule}
+
+If
+
+\[
+G(x)=\int_{a(x)}^{b(x)} h(x,y)\,dy
+\]
+
+then
+
+\[
+\frac{dG(x)}{dx}
+= h(x,b(x))\frac{db}{dx}
+- h(x,a(x))\frac{da}{dx}
++ \int_{a(x)}^{b(x)} \frac{\partial h(x,y)}{\partial x} dy
+\]
+
+\section{Key Takeaways}
+
+\begin{itemize}
+\item Transformations derive distributions of new random variables.
+\item CDF method is primary; PDF obtained by differentiation.
+\item Monotonic transformations use inverse and Jacobian.
+\item Functions of two RVs require region integration.
+\item Sum of independent RVs $\rightarrow$ convolution.
+\item Normal sums remain normal.
+\item Exponential sums produce Gamma-type distribution.
+\end{itemize}
+
+\end{document}
