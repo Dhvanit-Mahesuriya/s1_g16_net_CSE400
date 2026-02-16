@@ -1,0 +1,219 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\title{\textbf{CSE400 -- Fundamentals of Probability in Computing}}
+\author{Lecture 4: Joint Probability and Conditional Probability}
+\date{Instructor: Dhaval Patel, PhD \\ January 15, 2026}
+
+\begin{document}
+\maketitle
+\hrule
+\vspace{1em}
+
+\section{Course Context and Motivation}
+
+\subsection{Why Learn CSE400?}
+
+Daily life conversations involve uncertainty.
+
+\subsection{Engineering Applications}
+
+\begin{itemize}
+\item Speech Recognition
+\item Radar Systems
+\item Communication Networks
+\end{itemize}
+
+\subsubsection*{Speech Recognition System}
+Vocabulary templates such as \textbf{Hello, Yes, No, Bye} are matched against speech signals from different speakers.
+
+\subsubsection*{Radar System}
+Radar systems detect objects by transmitting signals and analyzing returned reflections.
+
+\subsubsection*{Communication Network}
+Information travels from a \textbf{source} to a \textbf{destination} through interconnected devices.
+
+\section{Lecture Outline}
+
+\subsection*{Introduction to Probability Theory}
+\begin{itemize}
+\item Experiments, Sample Space, and Events
+\item Axioms of Probability
+\item Corollaries and Propositions from Probability Axioms
+\item Assigning Probability: Classical and Relative Frequency Approaches
+\end{itemize}
+
+\subsection*{Joint Probability}
+\begin{itemize}
+\item Motivation, notation, and concepts
+\item Example: Card deck
+\item Example: Costume party
+\end{itemize}
+
+\subsection*{Conditional Probability}
+\begin{itemize}
+\item Motivation, notation, and concepts
+\item Cards without replacement
+\item Game of poker
+\item The missing key
+\end{itemize}
+
+\textit{(Slides provided cover the Introduction to Probability Theory section.)}
+
+\section{Introduction to Probability Theory}
+
+\subsection{Experiments, Outcomes, and Events}
+
+\subsubsection*{Experiment ($E$)}
+A procedure performed that produces a result.
+
+\textbf{Example:} Tossing a coin five times ($E_5$).
+
+\subsubsection*{Outcome ($\xi$)}
+A possible result of an experiment.
+
+\textbf{Example:}
+\[
+\xi_1 = HHTHT
+\]
+
+\subsubsection*{Event}
+A set of outcomes of an experiment.
+
+\textbf{Example:} Event $C$ with experiment $E_5$:
+\[
+C = \{\text{all outcomes consisting of an even number of heads}\}
+\]
+
+\subsection{Sample Space}
+
+\subsubsection*{Sample Space ($S$)}
+The set of all possible distinct outcomes of an experiment.
+
+\subsubsection*{Properties}
+
+\begin{itemize}
+\item \textbf{Mutually Exclusive:} heads or tails, but not both.
+\item \textbf{Collectively Exhaustive:} no outcome other than heads or tails.
+\end{itemize}
+
+\subsubsection*{Additional Notes}
+
+\begin{itemize}
+\item $S$ is the universal set of outcomes.
+\item Sample space may be:
+\begin{itemize}
+\item Discrete
+\item Countably infinite
+\item Continuous
+\end{itemize}
+\end{itemize}
+
+\subsubsection*{Examples of Sample Spaces}
+
+\begin{enumerate}
+\item Flipping a fair coin once
+\item Rolling a cubical die
+\item Rolling two dice
+\item Flip a coin until a tails occurs
+\item Random number generator on interval $[0,1]$
+\end{enumerate}
+
+\section{Probability and Axioms}
+
+\subsection{Probability}
+
+Probability measures the likelihood of events, or a function assigning a numerical value representing likelihood.
+
+\subsection{Axioms of Probability}
+
+These statements are self-evident and require no proof.
+
+\subsubsection*{Axiom 1 (Bounds)}
+
+\[
+0 \le Pr(A) \le 1
+\]
+
+\subsubsection*{Axiom 2 (Certainty)}
+
+If $S$ is the sample space:
+\[
+Pr(S) = 1
+\]
+
+\subsubsection*{Axiom 3 (Additivity)}
+
+If $A \cap B = \emptyset$:
+\[
+Pr(A \cup B) = Pr(A) + Pr(B)
+\]
+
+For infinitely many mutually exclusive events $A_i$:
+
+\[
+Pr\left(\bigcup_{i=1}^{\infty} A_i\right)
+= \sum_{i=1}^{\infty} Pr(A_i)
+\]
+
+\section{Corollary from Probability Axioms}
+
+Define $A_i$ as the null event for all values of $i>n$.
+
+\subsection*{Corollary 2.1}
+
+For $M$ finite mutually exclusive sets $A_i$:
+
+\[
+Pr\left(\bigcup_{i=1}^{M} A_i\right)
+= \sum_{i=1}^{M} Pr(A_i)
+\]
+
+\textbf{Notes}
+\begin{itemize}
+\item Axiom 3 is equivalent to Corollary 2.1 for finite sample spaces.
+\item Axiom 3 is needed when the sample space is infinite.
+\end{itemize}
+
+\section{Propositions from Probability Axioms}
+
+\subsection*{Proposition 2.1 (Complement Rule)}
+
+\[
+Pr(A^c) = 1 - Pr(A)
+\]
+
+\subsection*{Proposition 2.2 (Monotonicity)}
+
+If $A \subset B$, then:
+\[
+Pr(A) \le Pr(B)
+\]
+
+\section*{Key Points for Exam Preparation}
+
+\begin{itemize}
+\item Experiment $\rightarrow$ procedure producing results.
+\item Outcome $\rightarrow$ possible result.
+\item Event $\rightarrow$ set of outcomes.
+\item Sample space $\rightarrow$ all possible outcomes.
+\item Outcomes must be mutually exclusive and collectively exhaustive.
+\item Probability follows three axioms.
+\item Additivity applies to mutually exclusive events.
+\item Complement and subset properties follow from axioms.
+\item Finite additivity is given by Corollary 2.1.
+\end{itemize}
+
+\vfill
+\hrule
+\centerline{\textit{End of Lecture 4 Scribe}}
+
+\end{document}
