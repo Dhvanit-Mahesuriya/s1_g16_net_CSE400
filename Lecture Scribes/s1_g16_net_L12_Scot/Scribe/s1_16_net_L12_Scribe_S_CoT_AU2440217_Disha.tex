@@ -1,0 +1,530 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Lecture Scribe: Transformation of Random Variables and Functions of Two Random Variables}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Fundamental Framework}
+
+\subsection{Given}
+
+A continuous random variable (CRV):
+\[
+X
+\]
+
+whose probability functions are known:
+
+\textbf{Probability Density Function (PDF):}
+\[
+f_X(x)
+\]
+
+\textbf{Cumulative Distribution Function (CDF):}
+\[
+F_X(x)
+\]
+
+This is known \textbf{a priori}, meaning all probability information about $X$ is available.
+
+\subsection{Definition: Transformation of Random Variable}
+
+A new random variable is defined as:
+
+\[
+Y = g(X)
+\]
+
+This produces a new random variable derived from $X$.
+
+\subsection{Objective}
+
+Determine:
+
+\[
+F_Y(y)
+\quad \text{and} \quad
+f_Y(y)
+\]
+
+Logical dependency: Since $Y$ is defined in terms of $X$, its distribution must be derived from the distribution of $X$.
+
+\section{Invertibility Requirement}
+
+Assume:
+
+\[
+g(x)
+\]
+
+is monotonic (either increasing or decreasing).
+
+This ensures existence of inverse:
+
+\[
+x = g^{-1}(y)
+\]
+
+This inverse relationship allows conversion of probabilities involving $Y$ into probabilities involving $X$.
+
+\section{CDF Method for Transformation}
+
+\subsection{Step 1: Definition of CDF}
+
+By definition:
+
+\[
+F_Y(y) = Pr(Y \le y)
+\]
+
+Substitute $Y = g(X)$:
+
+\[
+F_Y(y) = Pr(g(X) \le y)
+\]
+
+\section{Case 1: Monotonically Increasing Function}
+
+\subsection{Step 2: Inequality Transformation}
+
+Since $g(x)$ is increasing:
+
+\[
+g(X) \le y \iff X \le g^{-1}(y)
+\]
+
+\subsection{Step 3: Express Using Known CDF}
+
+\[
+F_Y(y)
+=
+Pr(X \le g^{-1}(y))
+\]
+
+Using definition of $F_X(x)$:
+
+\[
+\boxed{
+F_Y(y) = F_X(g^{-1}(y))
+}
+\]
+
+\subsection{Step 4: Differentiate to Obtain PDF}
+
+\[
+f_Y(y)
+=
+\frac{d}{dy}F_Y(y)
+\]
+
+\[
+=
+\frac{d}{dy}F_X(g^{-1}(y))
+\]
+
+Using chain rule:
+
+\[
+=
+f_X(g^{-1}(y))
+\frac{d}{dy}g^{-1}(y)
+\]
+
+Since $x = g^{-1}(y)$:
+
+\[
+\boxed{
+f_Y(y)
+=
+f_X(x)
+\left|
+\frac{dx}{dy}
+\right|
+}
+\]
+
+\section{Case 2: Monotonically Decreasing Function}
+
+\subsection{Step 1: Define CDF}
+
+\[
+F_Y(y)
+=
+Pr(g(X) \le y)
+\]
+
+Since decreasing:
+
+\[
+g(X) \le y \iff X \ge g^{-1}(y)
+\]
+
+\subsection{Step 2: Use Complement Rule}
+
+\[
+F_Y(y)
+=
+Pr(X \ge g^{-1}(y))
+\]
+
+\[
+=
+1 - F_X(g^{-1}(y))
+\]
+
+\subsection{Step 3: Differentiate}
+
+\[
+f_Y(y)
+=
+-
+f_X(g^{-1}(y))
+\frac{d}{dy}g^{-1}(y)
+\]
+
+Final form:
+
+\[
+\boxed{
+f_Y(y)
+=
+\frac{f_X(x)}
+{\left|\frac{dy}{dx}\right|}
+}
+\]
+
+\section{Example: Uniform Transformation}
+
+\subsection{Given}
+
+\[
+X \sim Uniform(-1,1)
+\]
+
+\[
+f_X(x) =
+\begin{cases}
+\frac{1}{2}, & -1<x<1 \\
+0, & otherwise
+\end{cases}
+\]
+
+Transformation:
+
+\[
+Y =
+\sin\left(\frac{\pi X}{2}\right)
+\]
+
+\subsection{Step 1: Inverse}
+
+\[
+x =
+\frac{2}{\pi}
+\sin^{-1}(y)
+\]
+
+\subsection{Step 2: Derivative}
+
+\[
+\frac{dx}{dy}
+=
+\frac{2}{\pi}
+\frac{1}{\sqrt{1-y^2}}
+\]
+
+\subsection{Step 3: Apply Formula}
+
+\[
+f_Y(y)
+=
+f_X(x)
+\left|\frac{dx}{dy}\right|
+\]
+
+\[
+=
+\frac{1}{2}
+\cdot
+\frac{2}{\pi}
+\cdot
+\frac{1}{\sqrt{1-y^2}}
+\]
+
+Final result:
+
+\[
+\boxed{
+f_Y(y)
+=
+\frac{1}{\pi \sqrt{1-y^2}},
+\quad -1<y<1
+}
+\]
+
+\section{Function of Two Random Variables}
+
+Define:
+
+\[
+Z = g(X,Y)
+\]
+
+Example:
+
+\[
+Z = X + Y
+\]
+
+Goal:
+
+\[
+f_Z(z)
+\]
+
+Requires joint PDF:
+
+\[
+f_{XY}(x,y)
+\]
+
+\section{CDF of Z}
+
+\[
+F_Z(z)
+=
+Pr(Z \le z)
+\]
+
+\[
+=
+Pr(X+Y \le z)
+\]
+
+Region:
+
+\[
+x+y \le z
+\]
+
+Integral form:
+
+\[
+F_Z(z)
+=
+\int_{-\infty}^{\infty}
+\int_{-\infty}^{z-y}
+f_{XY}(x,y)
+dx dy
+\]
+
+\section{Leibnitz Rule}
+
+Given:
+
+\[
+G(x)
+=
+\int_{a(x)}^{b(x)}
+h(x,y)
+dy
+\]
+
+Derivative:
+
+\[
+\frac{dG(x)}{dx}
+=
+\frac{db(x)}{dx}h(x,b(x))
+-
+\frac{da(x)}{dx}h(x,a(x))
++
+\int_{a(x)}^{b(x)}
+\frac{\partial h(x,y)}{\partial x}
+dy
+\]
+
+\section{PDF of Z}
+
+Differentiate CDF:
+
+\[
+\boxed{
+f_Z(z)
+=
+\int_{-\infty}^{\infty}
+f_{XY}(z-y,y)
+dy
+}
+\]
+
+Equivalent form:
+
+\[
+\boxed{
+f_Z(z)
+=
+\int_{-\infty}^{\infty}
+f_{XY}(x,z-x)
+dx
+}
+\]
+
+\section{Independent Case}
+
+If independent:
+
+\[
+f_{XY}(x,y)
+=
+f_X(x)f_Y(y)
+\]
+
+\[
+\boxed{
+f_Z(z)
+=
+\int_{-\infty}^{\infty}
+f_X(x)f_Y(z-x)dx
+}
+\]
+
+This is convolution.
+
+\section{Normal Example}
+
+\[
+X \sim N(0,1)
+\]
+
+\[
+Y \sim N(0,1)
+\]
+
+\[
+\boxed{
+Z \sim N(0,2)
+}
+\]
+
+\section{Exponential Example}
+
+\[
+f_X(x) = \lambda e^{-\lambda x}
+\]
+
+\[
+f_Y(y) = \lambda e^{-\lambda y}
+\]
+
+\[
+\boxed{
+f_Z(z)
+=
+\lambda^2 z e^{-\lambda z}
+}
+\]
+
+\section{Difference of Random Variables}
+
+\[
+Z = X - Y
+\]
+
+\[
+F_Z(z)
+=
+Pr(X-Y \le z)
+\]
+
+\[
+=
+Pr(X \le z+Y)
+\]
+
+Integral form:
+
+\[
+F_Z(z)
+=
+\int
+\int_{x \le z+y}
+f_{XY}(x,y)
+dx dy
+\]
+
+\section{Ratio of Random Variables}
+
+\[
+Z =
+\frac{X}{Y}
+\]
+
+\[
+F_Z(z)
+=
+Pr\left(\frac{X}{Y} \le z\right)
+\]
+
+Requires cases:
+
+\[
+Y > 0, \quad Y < 0
+\]
+
+\section{Radius Transformation}
+
+\[
+R =
+\sqrt{X^2 + Y^2}
+\]
+
+Goal:
+
+\[
+f_R(r)
+\]
+
+Requires transformation of joint distribution.
+
+\section{Key Final Formulas}
+
+\[
+\boxed{
+f_Y(y)
+=
+f_X(g^{-1}(y))
+\left|
+\frac{d}{dy}g^{-1}(y)
+\right|
+}
+\]
+
+\[
+\boxed{
+f_Z(z)
+=
+\int f_X(x)f_Y(z-x)dx
+}
+\]
+
+\[
+\boxed{
+N(0,1)+N(0,1)=N(0,2)
+}
+\]
+
+\[
+\boxed{
+f_Z(z)=\lambda^2 z e^{-\lambda z}
+}
+\]
+
+\end{document}
