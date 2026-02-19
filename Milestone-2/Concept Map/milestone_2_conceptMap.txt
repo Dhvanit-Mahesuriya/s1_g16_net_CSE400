@@ -1,0 +1,100 @@
+In addition to the Milestone-1 framework, our concept map adds the probabilistic modelling and mathematical modeling of the system but maintain the original architecture. The overall goal is to better utilize UAV use in order to improve detection functionality, which can be accomplished using multi-UAV cooperative spectrum sensing.
+
+1. Left Extension Optimization Modeling Layer.
+
+We increased optimization aspect which is related to PSO Based Optimization its mathematical modeling structure.
+
+The Objective Function node was added and the purpose of maximization of the probability of system detection was introduced.
+
+These Constraints impose limitations on this goal and they determine the possible UAV deployment area.
+
+We further coddled the limits into:
+
+Area of coverage→ limits sensing region.
+
+Mobility Constraints -UAV movement constraints.
+
+UAV Power Limits CubeSat and endurance.
+
+These limitations affect UAV Positions which are updated iteratively as:
+
+Velocity Update
+
+Position Update
+
+This PSO process is decided by iteration to an Optimal UAV Deployment, which is a direct support of cooperative sensing performance.
+
+2. Including Bottom-Center Extension Cooperative Decision Modeling.
+
+Multi-UAV Cooperation was extended by us to demonstrate the combination of local sensing decisions in a probabilistic manner.
+
+Flow added:
+
+Local Decision at Each UAV  
+Signal presence is detected separately by UAVs.
+
+Decisions are relayed to one of an array of Fusion Center.
+
+It is a Fusion Rule that is used at the fusion center.  
+Correspondingly, logic of a decision fusion / rule-based OR.
+
+The result is a Global Decision on the spectrum occupancy.
+
+In this model co-operative detection uncertainty and decision aggregation is modeled.
+
+3. Signal and Noise Probabilistic (Right-Center Extension) Modeling.
+
+The signal observation model was added to mirror the hypothesis testing framework.
+
+Two core components:
+
+Signal Model
+
+Noise Model
+
+All these add up to the received signal:
+
+Received Signal at UAV:  
+y(t) = h·x(t) + n(t)
+
+Where:
+
+h → channel gain
+
+x(t) → transmitted signal
+
+n(t) → Gaussian noise
+
+Noise brings about distortion and indistinctness in sensing.
+
+4. SNR & Detection Probability Model (Right Extension).
+
+On the signal received, we probabilistically modeled the output of detection.
+
+Flow added:
+
+Signal-to-Noise ratio (SNR) is determined by received signal.
+
+SNR affects the results of detection and is compared with Decision Threshold (λ).
+
+On the basis of this comparison two important probabilities are calculated:
+
+Probability of Detection (Pd)
+
+Single Process Probability of False Alarm (Pf)
+
+These are the probabilities that measure sensing quality and are used to interpolate in terms of system performance.
+
+5. Compensation with Current Existing Milestone-1 Structure.
+
+Any additional modeling blocks are attached to the initial model:
+
+Spectrum Sensing and Eigen -based Detection are affected by detection probabilities.
+
+This improves Intense and Effective Performance.
+
+Secure Cooperative Sensing is provided by Cooperative sensing.
+
+The central goal is achieved by optimization and sensing.
+
+In that way, the concept map is not open but instead interrelated and stacked.
