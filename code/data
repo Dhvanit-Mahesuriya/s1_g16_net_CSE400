@@ -1,0 +1,3 @@
+This project does not use external datasets.
+All data samples are generated internally using Monte Carlo simulation
+as per the probabilistic model defined in the reference paper.
