@@ -1,0 +1,411 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{booktabs}
+\geometry{margin=1in}
+
+\title{CSE400 -- Fundamentals of Probability in Computing}
+\author{Lecture Scribe: Joint Random Variables \& Joint Distributions (L15--L18)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Joint Random Variables}
+
+Often two random variables must be analyzed simultaneously because one may influence the other.
+
+Let
+
+\[
+X = \text{Random Variable 1}
+\]
+
+\[
+Y = \text{Random Variable 2}
+\]
+
+The pair
+
+\[
+(X,Y)
+\]
+
+is called a \textbf{joint random variable}. The goal is to study the probability of combinations of values taken by both variables.
+
+Examples include:
+
+\begin{itemize}
+\item Traffic speed and traffic density
+\item Signal-to-noise ratio and network throughput
+\item Rainfall and temperature
+\item Wind speed and drone delivery time
+\item Dice experiment
+\end{itemize}
+
+These situations require \textbf{joint probability distributions}.
+
+\section{Discrete Joint Distribution -- Joint PMF}
+
+If $X$ and $Y$ are \textbf{discrete random variables}, their joint distribution is represented using the \textbf{Joint Probability Mass Function (Joint PMF)}.
+
+\subsection{Definition}
+
+\[
+p_{X,Y}(x,y) = P(X=x, Y=y)
+\]
+
+This represents the probability that:
+
+\begin{itemize}
+\item $X$ takes value $x$
+\item AND
+\item $Y$ takes value $y$
+\end{itemize}
+
+at the same time.
+
+\subsection{Properties of Joint PMF}
+
+\textbf{1. Non-negativity}
+
+\[
+p_{X,Y}(x,y) \ge 0
+\]
+
+\textbf{2. Total probability equals 1}
+
+\[
+\sum_x \sum_y p_{X,Y}(x,y) = 1
+\]
+
+\textbf{3. Probability of an event}
+
+For any set $A$,
+
+\[
+P((X,Y)\in A)=\sum_{(x,y)\in A} p_{X,Y}(x,y)
+\]
+
+\section{Joint PMF Table Representation}
+
+For discrete variables, the joint PMF can be represented using a table.
+
+\begin{center}
+\begin{tabular}{c|ccc}
+\toprule
+$Y \backslash X$ & $x_1$ & $x_2$ & $x_3$ \\
+\midrule
+$y_1$ & $p(x_1,y_1)$ & $p(x_2,y_1)$ & $p(x_3,y_1)$ \\
+$y_2$ & $p(x_1,y_2)$ & $p(x_2,y_2)$ & $p(x_3,y_2)$ \\
+$y_3$ & $p(x_1,y_3)$ & $p(x_2,y_3)$ & $p(x_3,y_3)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each entry represents
+
+\[
+P(X=x_i, Y=y_j)
+\]
+
+The sum of all entries must equal 1.
+
+\section{Example: Rolling Two Dice}
+
+Experiment: roll two fair dice.
+
+Define random variables:
+
+\[
+X = \text{value on the first die}
+\]
+
+\[
+T = \text{total (sum) of both dice}
+\]
+
+Possible values:
+
+\[
+X \in \{1,2,3,4,5,6\}
+\]
+
+\[
+T \in \{2,3,4,5,6,7,8,9,10,11,12\}
+\]
+
+Total sample outcomes:
+
+\[
+6 \times 6 = 36
+\]
+
+Each outcome has probability
+
+\[
+\frac{1}{36}
+\]
+
+\subsection{Joint PMF}
+
+\[
+p_{X,T}(x,t)=P(X=x,T=t)
+\]
+
+Example calculations:
+
+\textbf{Case 1}
+
+\[
+P(X=1,T=2)
+\]
+
+Outcome: $(1,1)$
+
+\[
+P=\frac{1}{36}
+\]
+
+\textbf{Case 2}
+
+\[
+P(X=1,T=7)
+\]
+
+Outcome: $(1,6)$
+
+\[
+P=\frac{1}{36}
+\]
+
+\textbf{Case 3}
+
+\[
+P(X=3,T=7)
+\]
+
+Outcome: $(3,4)$
+
+\[
+P=\frac{1}{36}
+\]
+
+If a pair $(x,t)$ cannot occur:
+
+\[
+p_{X,T}(x,t)=0
+\]
+
+Example:
+
+\[
+P(X=6,T=3)=0
+\]
+
+\section{Continuous Case -- Joint PDF}
+
+If $X$ and $Y$ are \textbf{continuous random variables}, we use the \textbf{Joint Probability Density Function}.
+
+\subsection{Definition}
+
+\[
+f_{X,Y}(x,y)
+\]
+
+The probability that $(X,Y)$ lies in region $R$ is
+
+\[
+P((X,Y)\in R)=\int\int_R f_{X,Y}(x,y)\,dx\,dy
+\]
+
+\subsection{Properties}
+
+\textbf{Non-negativity}
+
+\[
+f_{X,Y}(x,y) \ge 0
+\]
+
+\textbf{Total probability}
+
+\[
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f_{X,Y}(x,y)\,dx\,dy = 1
+\]
+
+\section{Geometric Interpretation}
+
+In continuous distributions, probability corresponds to the \textbf{volume under a surface}.
+
+Example probability:
+
+\[
+P(a<X<b, c<Y<d)
+\]
+
+\[
+=\int_a^b \int_c^d f_{X,Y}(x,y)\,dy\,dx
+\]
+
+\section{Worked Example: Normalization}
+
+Suppose
+
+\[
+f_{X,Y}(x,y)=c
+\]
+
+inside region $R$.
+
+\textbf{Step 1}
+
+\[
+\int\int_R f_{X,Y}(x,y)\,dx\,dy =1
+\]
+
+\textbf{Step 2}
+
+\[
+\int\int_R c\,dx\,dy =1
+\]
+
+\textbf{Step 3}
+
+\[
+c \int\int_R dx\,dy =1
+\]
+
+If
+
+\[
+a<x<b
+\]
+
+\[
+c<y<d
+\]
+
+Area:
+
+\[
+(b-a)(d-c)
+\]
+
+\textbf{Step 4}
+
+\[
+c(b-a)(d-c)=1
+\]
+
+\[
+c=\frac{1}{(b-a)(d-c)}
+\]
+
+\section{Joint Cumulative Distribution Function}
+
+\subsection{Definition}
+
+\[
+F_{X,Y}(x,y)=P(X\le x, Y\le y)
+\]
+
+\section{Continuous Case}
+
+\[
+F_{X,Y}(x,y)=\int_{-\infty}^{x}\int_{-\infty}^{y} f_{X,Y}(u,v)\,dv\,du
+\]
+
+\subsection{Relation Between CDF and PDF}
+
+\[
+f_{X,Y}(x,y)=
+\frac{\partial^2}{\partial x \partial y}
+F_{X,Y}(x,y)
+\]
+
+\section{Discrete Case}
+
+\[
+F_{X,Y}(x,y)=\sum_{i\le x}\sum_{j\le y} p_{X,Y}(i,j)
+\]
+
+\section{Properties of Joint CDF}
+
+\textbf{Range}
+
+\[
+0 \le F_{X,Y}(x,y) \le 1
+\]
+
+\textbf{Limits}
+
+\[
+\lim_{x\to -\infty}F(x,y)=0
+\]
+
+\[
+\lim_{y\to -\infty}F(x,y)=0
+\]
+
+\textbf{Upper limit}
+
+\[
+\lim_{x,y\to\infty}F(x,y)=1
+\]
+
+\textbf{Monotonicity}
+
+The CDF is non-decreasing in both variables.
+
+\subsection{Rectangle Probability Formula}
+
+\[
+P(a<X\le b, c<Y\le d)
+\]
+
+\[
+=F(b,d)-F(a,d)-F(b,c)+F(a,c)
+\]
+
+\section{Key Formulas for Exam Revision}
+
+\subsection{Joint PMF}
+
+\[
+p_{X,Y}(x,y)=P(X=x,Y=y)
+\]
+
+\[
+\sum_x\sum_y p_{X,Y}(x,y)=1
+\]
+
+\subsection{Joint PDF}
+
+\[
+P((X,Y)\in R)=\int\int_R f_{X,Y}(x,y)\,dx\,dy
+\]
+
+\[
+\int\int f_{X,Y}(x,y)\,dx\,dy=1
+\]
+
+\subsection{Joint CDF}
+
+\[
+F_{X,Y}(x,y)=P(X\le x,Y\le y)
+\]
+
+Continuous case:
+
+\[
+F(x,y)=\int_{-\infty}^{x}\int_{-\infty}^{y}f(u,v)\,dv\,du
+\]
+
+PDF from CDF:
+
+\[
+f(x,y)=\frac{\partial^2}{\partial x \partial y}F(x,y)
+\]
+
+\end{document}
