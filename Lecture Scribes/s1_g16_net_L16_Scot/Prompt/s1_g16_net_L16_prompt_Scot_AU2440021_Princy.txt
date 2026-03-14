@@ -1,0 +1,2 @@
+prompt:
+generate a lecture scribe for this. lecture scribe is a exam ready material for before exam preparation. include important explanation, derivations and calculations given in the pdf. includes all the concepts covered in the pdf. don't give unnecessary repetitions and motivation. stick to the pdf only and do not include concepts outside the pdf and not in context with it. give detailed lecture scribe following all the rules 
