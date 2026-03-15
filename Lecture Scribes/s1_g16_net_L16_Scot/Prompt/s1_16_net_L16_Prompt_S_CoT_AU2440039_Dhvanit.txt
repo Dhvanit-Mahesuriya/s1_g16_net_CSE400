@@ -1,0 +1,5 @@
+Assume you are expert lecture scribe generator. Generate lecture scribe suitable for exam preparation for CSE400 Joint Random Variables + Joint Distributions + Examples
+While writing the scribe, explain everything step by step so that the logic and reasoning are clear. The scribe should include all important things like  definitions, assumptions, concepts, properties, derivations and worked examples mentioned in the lecture. It should master key of revision.
+Use only the provided lecture slides. Do not add any explanations, examples or anything that is not present in the given context. Do not use any outside sources.
+The lecture scribe should strictly contain only what is given in the context, but it should still be written in clear and organized way suitable for exam revision.
+Make it like the scribe covers every important point from the slides and explains the steps clearly so that it is easy to revise before exams. 
