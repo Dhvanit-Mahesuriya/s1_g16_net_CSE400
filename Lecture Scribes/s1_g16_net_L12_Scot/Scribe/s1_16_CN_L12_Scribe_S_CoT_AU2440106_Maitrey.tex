@@ -1,0 +1,409 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\title{
+CSE400 -- Fundamentals of Probability in Computing\\
+\large Lecture 12 Scribe: Transformation of Random Variables and Functions of Two Random Variables
+}
+
+\author{
+Dhaval Patel, PhD\\
+Associate Professor, Computer Science and Engineering\\
+SEAS -- Ahmedabad University
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\onehalfspacing
+
+\section{Lecture Overview}
+
+This lecture studies how the probability distribution of a random variable changes when a transformation is applied. The lecture focuses on three major topics:
+
+\begin{enumerate}
+    \item Transformation of Random Variables
+    \item Functions of Two Random Variables
+    \item Illustrative Example: Derivation of the distribution of $Z = X + Y$
+\end{enumerate}
+
+The objective is to determine the probability distribution of a new random variable when it is defined as a function of one or more existing random variables.
+
+\section{Transformation of a Random Variable}
+
+\subsection{Problem Setup}
+
+Suppose a continuous random variable $X$ has known probability density function (PDF)
+
+\[
+f_X(x)
+\]
+
+and cumulative distribution function (CDF)
+
+\[
+F_X(x)
+\]
+
+Now define a new random variable
+
+\[
+Y = g(X)
+\]
+
+The goal is to determine the distribution of $Y$, namely
+
+\[
+F_Y(y) \quad \text{and} \quad f_Y(y)
+\]
+
+\section{Derivation Using the CDF Method}
+
+\subsection{Step 1: Definition of CDF}
+
+The cumulative distribution function of $Y$ is
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Substituting $Y = g(X)$ gives
+
+\[
+F_Y(y) = P(g(X) \le y)
+\]
+
+\subsection{Step 2: Use the inverse transformation}
+
+If the function $g(\cdot)$ is monotonic, the inverse function exists. Therefore,
+
+\[
+g(X) \le y
+\]
+
+is equivalent to
+
+\[
+X \le g^{-1}(y)
+\]
+
+Hence,
+
+\[
+F_Y(y) = P(X \le g^{-1}(y))
+\]
+
+\[
+F_Y(y) = F_X(g^{-1}(y))
+\]
+
+\section{Deriving the PDF}
+
+To obtain the PDF of $Y$, differentiate the CDF.
+
+\[
+f_Y(y) = \frac{d}{dy} F_Y(y)
+\]
+
+Substituting the previous result,
+
+\[
+f_Y(y) = \frac{d}{dy} F_X(g^{-1}(y))
+\]
+
+Using the chain rule,
+
+\[
+f_Y(y) =
+f_X(g^{-1}(y))
+\frac{d}{dy} g^{-1}(y)
+\]
+
+Thus the transformation formula becomes
+
+\[
+f_Y(y) =
+f_X(x)
+\left|
+\frac{dx}{dy}
+\right|
+\quad \text{where } x = g^{-1}(y)
+\]
+
+\section{Example: Transformation of a Uniform Random Variable}
+
+\subsection{Given}
+
+\[
+X \sim U(-1,1)
+\]
+
+Thus the PDF of $X$ is
+
+\[
+f_X(x) =
+\begin{cases}
+\frac{1}{2}, & -1 < x < 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+Define the transformation
+
+\[
+Y = \sin\left(\frac{\pi X}{2}\right)
+\]
+
+Find $f_Y(y)$.
+
+\subsection{Step 1: Invert the transformation}
+
+\[
+Y = \sin\left(\frac{\pi X}{2}\right)
+\]
+
+Taking the inverse sine,
+
+\[
+X = \frac{2}{\pi}\sin^{-1}(y)
+\]
+
+\subsection{Step 2: Compute derivative}
+
+\[
+\frac{dx}{dy} =
+\frac{2}{\pi}\frac{1}{\sqrt{1-y^2}}
+\]
+
+\subsection{Step 3: Apply transformation formula}
+
+\[
+f_Y(y) =
+f_X(x)\left|\frac{dx}{dy}\right|
+\]
+
+Substitute $f_X(x) = \frac{1}{2}$
+
+\[
+f_Y(y) =
+\frac{1}{2}
+\cdot
+\frac{2}{\pi}
+\frac{1}{\sqrt{1-y^2}}
+\]
+
+\subsection{Final Result}
+
+\[
+f_Y(y) =
+\frac{1}{\pi\sqrt{1-y^2}}, \quad -1 < y < 1
+\]
+
+\section{Function of Two Random Variables}
+
+Now consider a transformation involving two random variables:
+
+\[
+Z = X + Y
+\]
+
+The goal is to determine the probability density function of $Z$.
+
+\section{CDF of the Transformed Variable}
+
+Start with the definition
+
+\[
+F_Z(z) = P(Z \le z)
+\]
+
+Substituting $Z = X + Y$
+
+\[
+F_Z(z) = P(X + Y \le z)
+\]
+
+This probability corresponds to the region
+
+\[
+x + y \le z
+\]
+
+in the $(x,y)$ plane.
+
+Thus,
+
+\[
+F_Z(z) =
+\iint_{x+y\le z} f_{XY}(x,y)\,dx\,dy
+\]
+
+\section{Differentiation Using Leibniz Rule}
+
+To obtain the PDF,
+
+\[
+f_Z(z) = \frac{d}{dz}F_Z(z)
+\]
+
+Using the Leibniz rule for differentiation of integrals,
+
+\[
+f_Z(z) =
+\int_{-\infty}^{\infty}
+f_{XY}(x,z-x)\,dx
+\]
+
+\section{Independent Random Variables (Convolution)}
+
+If $X$ and $Y$ are independent,
+
+\[
+f_{XY}(x,y) = f_X(x)f_Y(y)
+\]
+
+Therefore,
+
+\[
+f_Z(z) =
+\int_{-\infty}^{\infty}
+f_X(x)f_Y(z-x)\,dx
+\]
+
+This integral is called the convolution integral.
+
+\section{Example: Sum of Two Normal Random Variables}
+
+Let
+
+\[
+X \sim N(0,1)
+\]
+
+\[
+Y \sim N(0,1)
+\]
+
+with independence.
+
+Applying the convolution formula yields
+
+\[
+f_Z(z) =
+\frac{1}{\sqrt{4\pi}}e^{-z^2/4}
+\]
+
+Thus,
+
+\[
+Z \sim N(0,2)
+\]
+
+\section{Example: Sum of Exponential Random Variables}
+
+Let
+
+\[
+X,Y \sim \text{Exponential}(\lambda)
+\]
+
+with
+
+\[
+f_X(x) = \lambda e^{-\lambda x}, \quad x>0
+\]
+
+\[
+f_Y(y) = \lambda e^{-\lambda y}, \quad y>0
+\]
+
+Using convolution,
+
+\[
+f_Z(z) =
+\int_0^z
+\lambda e^{-\lambda x}
+\lambda e^{-\lambda (z-x)} dx
+\]
+
+which simplifies to
+
+\[
+f_Z(z) =
+\lambda^2 z e^{-\lambda z}, \quad z>0
+\]
+
+\section{Additional Transformations}
+
+Other transformations discussed include
+
+\[
+Z = X - Y
+\]
+
+\[
+Z = \frac{X}{Y}
+\]
+
+and radial transformations
+
+\[
+R = \sqrt{X^2 + Y^2}
+\]
+
+These illustrate how functions of random variables can be used to derive new probability distributions.
+
+\section{Key Results for Examination}
+
+\subsection{Single Variable Transformation}
+
+\[
+f_Y(y) =
+f_X(g^{-1}(y))
+\left|
+\frac{d}{dy}g^{-1}(y)
+\right|
+\]
+
+\subsection{Distribution of the Sum}
+
+\[
+f_Z(z) =
+\int f_{XY}(x,z-x)dx
+\]
+
+\subsection{Independent Case (Convolution)}
+
+\[
+f_Z(z) =
+\int f_X(x)f_Y(z-x)dx
+\]
+
+\subsection{Important Results}
+
+\[
+X,Y \sim N(0,1)
+\Rightarrow
+Z = X+Y \sim N(0,2)
+\]
+
+\[
+X,Y \sim \text{Exponential}(\lambda)
+\Rightarrow
+f_Z(z) = \lambda^2 z e^{-\lambda z}
+\]
+
+\end{document}
