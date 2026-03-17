@@ -1,0 +1,15 @@
+Generate a lecture scribe intended to serve as reference material for exam preparation using ONLY the provided context (Lecture 16).
+
+Instructions:
+
+Purpose: The scribe must be exam-ready, strictly following the content of the slides.
+
+Content: Include definitions, assumptions, theorem statements, proofs or derivations, and worked examples exactly as presented in the lecture materials.
+
+Reasoning: Internally generate multiple reasoning paths and ensure consistency across them before producing the final answer.
+
+Constraints: Do not introduce new examples, outside information, or hallucinations. Do not use phrases like 'for example' to add your own content.
+
+Structure: Organize the scribe clearly with appropriate headings corresponding to the lecture flow.
+
+Goal: Produce a clean, accurate revision document based solely on the provided material.
