@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{CSE400: Fundamentals of Probability in Computing}
+\rhead{Lecture 16 Scribe}
+\cfoot{\thepage}
+
+\begin{document}
+
+\title{\textbf{Lecture 16: Joint Random Variables \& Joint Distributions}}
+\author{}
+\date{}
+\maketitle
+
+\section{Introduction: Why Study Joint Random Variables?}
+
+\subsection{Motivation}
+In many real-world systems, we are interested in analyzing two or more random variables simultaneously.
+
+\subsection{Key Idea}
+Let:
+\[
+X = \text{Random Variable 1}, \quad Y = \text{Random Variable 2}
+\]
+These variables may be correlated.
+
+\subsection{Examples}
+
+\textbf{Smart Transportation}
+\begin{itemize}
+    \item $X =$ Vehicle Speed
+    \item $Y =$ Traffic Density
+\end{itemize}
+
+\textbf{Wireless Network Performance}
+\begin{itemize}
+    \item $X =$ Signal-to-Noise Ratio (SNR)
+    \item $Y =$ Data Throughput
+\end{itemize}
+
+\textbf{Other Examples}
+\begin{itemize}
+    \item Weather Prediction: Rainfall, Temperature
+    \item Drone Delivery: Wind Speed, Delivery Time
+    \item Rolling Two Dice
+\end{itemize}
+
+\section{Discrete Case -- Joint PMF}
+
+\subsection{Definition}
+For discrete random variables $X$ and $Y$, the joint probability mass function (PMF) is:
+\[
+P(X = x, Y = y)
+\]
+
+\subsection{Interpretation}
+It represents the probability of simultaneous outcomes of $X$ and $Y$.
+
+\subsection{Joint PMF Table}
+Values of $X$ and $Y$ are arranged in a table where each cell represents:
+\[
+P(X = x_i, Y = y_j)
+\]
+
+\section{Example: Rolling Two Dice}
+
+\subsection{Setup}
+Two dice are rolled.
+
+\[
+X = \text{Outcome of first die}, \quad Y = \text{Outcome of second die}
+\]
+
+\subsection{Objective}
+Construct the joint PMF and evaluate joint events such as:
+\[
+X + Y = 7, \quad X > Y
+\]
+
+\section{Continuous Case -- Joint PDF}
+
+\subsection{Definition}
+For continuous random variables $X$ and $Y$, the joint probability density function (PDF) is:
+\[
+f_{X,Y}(x,y)
+\]
+
+\subsection{Interpretation}
+Probability over a region $R$:
+\[
+P((X,Y) \in R) = \iint_R f_{X,Y}(x,y)\,dx\,dy
+\]
+
+\subsection{Geometric Interpretation}
+Probability corresponds to volume under the surface over a region.
+
+\section{Worked Example (Continuous Case)}
+
+Tasks include:
+\begin{itemize}
+    \item Validating the PDF
+    \item Computing probabilities over regions
+    \item Performing double integration
+\end{itemize}
+
+\section{Joint Cumulative Distribution Function (Joint CDF)}
+
+\subsection{Definition}
+\[
+F_{X,Y}(x,y) = P(X \leq x, Y \leq y)
+\]
+
+\section{Joint CDF -- Continuous Case}
+
+Relation with joint PDF:
+\[
+F_{X,Y}(x,y) = \int_{-\infty}^{x} \int_{-\infty}^{y} f_{X,Y}(u,v)\,du\,dv
+\]
+
+\section{Joint CDF -- Discrete Case}
+
+Computed using summation:
+\[
+F_{X,Y}(x,y) = \sum_{u \leq x} \sum_{v \leq y} P(X = u, Y = v)
+\]
+
+\section{Properties of the Joint CDF}
+
+\begin{enumerate}
+    \item \textbf{Non-decreasing Property:} Increasing in both $x$ and $y$
+    \item \textbf{Limits:}
+    \[
+    F_{X,Y}(-\infty, y) = 0
+    \]
+    \[
+    F_{X,Y}(x, -\infty) = 0
+    \]
+    \[
+    F_{X,Y}(\infty, \infty) = 1
+    \]
+    \item \textbf{Right-continuity}
+    \item \textbf{Probability Extraction:} Probabilities over regions can be derived using CDF values
+\end{enumerate}
+
+\section{Summary}
+
+\begin{itemize}
+    \item Joint random variables model multiple dependent quantities
+    \item Two main cases:
+    \begin{itemize}
+        \item Discrete $\rightarrow$ Joint PMF
+        \item Continuous $\rightarrow$ Joint PDF
+    \end{itemize}
+    \item Joint CDF provides cumulative probabilities
+    \item Applications include:
+    \begin{itemize}
+        \item Transportation
+        \item Wireless networks
+        \item Weather systems
+        \item Logistics
+    \end{itemize}
+\end{itemize}
+
+\end{document}
