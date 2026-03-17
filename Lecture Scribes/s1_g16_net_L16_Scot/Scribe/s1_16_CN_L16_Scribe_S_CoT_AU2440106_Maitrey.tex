@@ -1,0 +1,319 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+\setstretch{1.2}
+
+\title{CSE400 -- Fundamentals of Probability in Computing\\
+Lecture 16 Scribe\\
+Joint Random Variables and Joint Distributions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction and Motivation}
+
+In many scientific and engineering problems, we must analyze \textbf{two or more random variables simultaneously} rather than studying each variable independently. This motivates the concept of \textbf{joint probability}, which allows us to compute probabilities of events involving multiple variables occurring together.
+
+Examples where multiple variables are studied together include:
+
+\begin{itemize}
+\item Height and weight of giraffes
+\item IQ and birthweight of children
+\item Frequency of exercise and rate of heart disease
+\item Air pollution level and respiratory illness rate
+\item Number of Facebook friends and age of members
+\end{itemize}
+
+These examples demonstrate that two variables may have a relationship, meaning the value of one variable may provide information about the other.
+
+\section{Applications of Joint Probability}
+
+\subsection{Smart Transportation}
+
+Consider two random variables:
+
+\[
+X = \text{Vehicle Speed}
+\]
+
+\[
+Y = \text{Traffic Density}
+\]
+
+A key question is whether vehicle speed can be high when traffic density is also high. This illustrates that speed and density may be \textbf{correlated random variables}.
+
+Applications include:
+
+\begin{itemize}
+\item Adaptive traffic signals
+\item Congestion prediction
+\item Autonomous vehicle routing
+\end{itemize}
+
+\subsection{Wireless Network Performance}
+
+In wireless communication systems we consider:
+
+\[
+X = \text{Signal-to-Noise Ratio (SNR)}
+\]
+
+\[
+Y = \text{Data Throughput}
+\]
+
+Throughput depends on SNR but may also be affected by network congestion and interference. Thus even when SNR is high, throughput may not always be high. This indicates a \textbf{conditional relationship between variables}.
+
+Applications include:
+
+\begin{itemize}
+\item 5G scheduling
+\item Adaptive modulation
+\item Network planning
+\end{itemize}
+
+\section{Concept of Joint Distribution}
+
+When two random variables are studied together, they possess a \textbf{joint distribution}. This distribution allows us to:
+
+\begin{itemize}
+\item Compute probabilities involving multiple variables
+\item Understand relationships between variables
+\item Analyze dependence structures
+\end{itemize}
+
+If the variables are independent, the analysis becomes simpler. When they are not independent, dependence can be measured using quantities such as covariance and correlation.
+
+\section{Discrete Case: Joint Probability Mass Function}
+
+\subsection{Setup}
+
+Suppose $X$ and $Y$ are discrete random variables:
+
+\[
+X = \{x_1, x_2, \dots , x_n\}
+\]
+
+\[
+Y = \{y_1, y_2, \dots , y_m\}
+\]
+
+The ordered pair $(X,Y)$ takes values in the \textbf{product set}
+
+\[
+\{(x_1,y_1),(x_1,y_2),\dots,(x_n,y_m)\}.
+\]
+
+\subsection{Definition}
+
+The \textbf{joint probability mass function (PMF)} is defined as
+
+\[
+p(x_i,y_j) = P(X=x_i, Y=y_j)
+\]
+
+This represents the probability that $X$ takes value $x_i$ and $Y$ simultaneously takes value $y_j$.
+
+\section{Joint PMF Table Representation}
+
+The joint PMF can be organized into a two-dimensional probability table where:
+
+\begin{itemize}
+\item Rows correspond to values of $X$
+\item Columns correspond to values of $Y$
+\item Each entry contains the probability $p(x_i,y_j)$
+\end{itemize}
+
+\subsection{Key Properties}
+
+\textbf{Property 1:}
+
+\[
+0 \leq p(x_i,y_j) \leq 1
+\]
+
+\textbf{Property 2:}
+
+\[
+\sum_{i=1}^{n} \sum_{j=1}^{m} p(x_i,y_j) = 1
+\]
+
+These conditions ensure that the table represents a valid probability distribution.
+
+\section{Example: Rolling Two Dice}
+
+\subsection{Experiment}
+
+Roll two fair dice.
+
+Define random variables:
+
+\[
+X = \text{value on the first die}
+\]
+
+\[
+T = \text{total sum of both dice}
+\]
+
+There are $36$ equally likely outcomes. Thus each ordered pair outcome $(i,j)$ has probability
+
+\[
+P((i,j)) = \frac{1}{36}.
+\]
+
+\subsection{Observations}
+
+From the joint probability table we observe:
+
+\begin{itemize}
+\item Entries are either $0$ or $\frac{1}{36}$
+\item Some combinations are impossible and therefore have probability $0$
+\end{itemize}
+
+If $X=1$, possible totals are
+
+\[
+T = 2,3,4,5,6,7
+\]
+
+Each corresponding outcome occurs with probability $\frac{1}{36}$.
+
+\subsection{Dependence}
+
+From the joint table we observe that
+
+\[
+X \text{ and } T \text{ are not independent}
+\]
+
+because knowing $X$ restricts the possible values of $T$.
+
+\section{Continuous Case: Joint Probability Density Function}
+
+The continuous case generalizes the discrete case.
+
+\begin{center}
+\begin{tabular}{c|c}
+Discrete Case & Continuous Case \\
+\hline
+Discrete values & Continuous intervals \\
+Joint PMF & Joint PDF \\
+Summations & Double integrals \\
+\end{tabular}
+\end{center}
+
+If
+
+\[
+X \in [a,b], \quad Y \in [c,d]
+\]
+
+then $(X,Y)$ lies in the rectangular region
+
+\[
+[a,b] \times [c,d].
+\]
+
+\subsection{Definition}
+
+A function $f(x,y)$ is called the \textbf{joint probability density function} if
+
+\[
+P((X,Y) \text{ lies in a small rectangle}) \approx f(x,y)\,dx\,dy
+\]
+
+\subsection{Key Properties}
+
+\textbf{Non-negativity}
+
+\[
+f(x,y) \ge 0
+\]
+
+\textbf{Normalization}
+
+\[
+\int_c^d \int_a^b f(x,y)\,dx\,dy = 1
+\]
+
+Note that $f(x,y)$ may be greater than $1$ because it represents a density, not a probability.
+
+\section{Worked Continuous Example}
+
+Given
+
+\[
+f(x,y) = 4xy
+\]
+
+for
+
+\[
+0 \le x \le 1, \quad 0 \le y \le 1
+\]
+
+Thus $(X,Y)$ lies in the unit square $[0,1]^2$.
+
+\subsection{Step 1: Check Validity}
+
+\[
+\int_0^1 \int_0^1 4xy \, dx\,dy
+\]
+
+First integrate with respect to $x$:
+
+\[
+\int_0^1 4xy\,dx = 2y
+\]
+
+Then integrate with respect to $y$:
+
+\[
+\int_0^1 2y\,dy = [y^2]_0^1 = 1
+\]
+
+Thus the function is a valid joint PDF.
+
+\subsection{Step 2: Compute Probability}
+
+Let
+
+\[
+A = \{X < 0.5, Y > 0.5\}
+\]
+
+Then
+
+\[
+P(A) = \int_0^{0.5} \int_{0.5}^{1} 4xy\,dy\,dx
+\]
+
+Evaluating the integral gives
+
+\[
+P(A) = \frac{3}{16}.
+\]
+
+\section{Conclusion}
+
+Key takeaways from this lecture include:
+
+\begin{itemize}
+\item Joint Random Variable models events involving multiple random variables.
+\item The joint PMF describes discrete joint distributions.
+\item The joint PDF describes continuous joint distributions.
+\item Joint distributions allow analysis of relationships between variables.
+\item Dependence between variables can be studied through joint distributions.
+\end{itemize}
+
+\end{document}
