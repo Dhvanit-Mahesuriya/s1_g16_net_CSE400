@@ -1,0 +1,245 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{booktabs}
+\geometry{margin=1in}
+
+\title{\textbf{CSE400: Fundamentals of Probability in Computing}\\
+Lecture 20: Linear Transformations and Expectations of Multiple RVs}
+\author{Instructor: Dhaval Patel, PhD}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Statistical Representation of Random Vectors}
+
+\subsection{Definition}
+For multiple random variables $X_1, X_2, \dots, X_N$, we define a random vector:
+\begin{equation}
+\mathbf{X} =
+\begin{bmatrix}
+X_1 \\
+X_2 \\
+\vdots \\
+X_N
+\end{bmatrix}
+\end{equation}
+
+\textbf{Purpose:} Compact representation for handling multiple random variables.
+
+\subsection{Mean Vector}
+\begin{equation}
+\boldsymbol{\mu}_X = \mathbb{E}[\mathbf{X}]
+=
+\begin{bmatrix}
+\mathbb{E}[X_1] \\
+\mathbb{E}[X_2] \\
+\vdots \\
+\mathbb{E}[X_N]
+\end{bmatrix}
+\end{equation}
+
+\textbf{Logic:} Represents average behavior of the system.
+
+\subsection{Correlation Matrix}
+\begin{equation}
+\mathbf{R}_{XX} = \mathbb{E}[\mathbf{X}\mathbf{X}^T]
+\end{equation}
+
+\begin{equation}
+R_{XX}(i,j) = \mathbb{E}[X_i X_j]
+\end{equation}
+
+\textbf{Property:} Symmetric $N \times N$ matrix.
+
+\subsection{Covariance Matrix}
+\begin{equation}
+\mathbf{C}_{XX} = \mathbb{E}[(\mathbf{X} - \boldsymbol{\mu}_X)(\mathbf{X} - \boldsymbol{\mu}_X)^T]
+\end{equation}
+
+\textbf{Structure:}
+\begin{equation}
+\mathbf{C}_{XX} =
+\begin{bmatrix}
+\mathrm{Var}(X_1) & \mathrm{Cov}(X_1,X_2) & \cdots \\
+\mathrm{Cov}(X_2,X_1) & \mathrm{Var}(X_2) & \cdots \\
+\vdots & \vdots & \ddots
+\end{bmatrix}
+\end{equation}
+
+\textbf{Property:} Symmetric since $\mathrm{Cov}(X_i,X_j)=\mathrm{Cov}(X_j,X_i)$.
+
+\section{Linear Transformations of Random Vectors}
+
+\subsection{Model}
+\begin{equation}
+\mathbf{Y} = \mathbf{A}\mathbf{X} + \mathbf{b}
+\end{equation}
+
+\begin{itemize}
+    \item $\mathbf{A}$: transformation matrix
+    \item $\mathbf{b}$: constant shift vector
+\end{itemize}
+
+\subsection{Mapping Properties}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Property & Result \\
+\midrule
+Mean & $\boldsymbol{\mu}_Y = \mathbf{A}\boldsymbol{\mu}_X + \mathbf{b}$ \\
+Covariance & $\mathbf{C}_{YY} = \mathbf{A}\mathbf{C}_{XX}\mathbf{A}^T$ \\
+Correlation & $\mathbf{R}_{YY} = \mathbf{A}\mathbf{R}_{XX}\mathbf{A}^T + \mathbf{A}\boldsymbol{\mu}_X \mathbf{b}^T + \mathbf{b}\boldsymbol{\mu}_X^T \mathbf{A}^T + \mathbf{b}\mathbf{b}^T$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Derivations}
+
+\textbf{Mean:}
+\begin{equation}
+\mathbb{E}[\mathbf{Y}] = \mathbb{E}[\mathbf{A}\mathbf{X} + \mathbf{b}] = \mathbf{A}\boldsymbol{\mu}_X + \mathbf{b}
+\end{equation}
+
+\textbf{Covariance:}
+\begin{equation}
+\mathbf{Y} - \boldsymbol{\mu}_Y = \mathbf{A}(\mathbf{X} - \boldsymbol{\mu}_X)
+\end{equation}
+
+\begin{equation}
+\mathbf{C}_{YY} = \mathbb{E}[\mathbf{A}(\mathbf{X} - \boldsymbol{\mu}_X)(\mathbf{X} - \boldsymbol{\mu}_X)^T \mathbf{A}^T]
+= \mathbf{A}\mathbf{C}_{XX}\mathbf{A}^T
+\end{equation}
+
+\textbf{Note:} Shift $\mathbf{b}$ does not affect covariance.
+
+\section{Multivariate Gaussian Distribution}
+
+\subsection{1D Case}
+\begin{equation}
+f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+\end{equation}
+
+\subsection{N-Dimensional Case}
+\begin{equation}
+f_{\mathbf{X}}(\mathbf{x}) =
+\frac{1}{(2\pi)^{N/2} |\mathbf{C}_{XX}|^{1/2}}
+\exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}_X)^T \mathbf{C}_{XX}^{-1} (\mathbf{x}-\boldsymbol{\mu}_X)\right)
+\end{equation}
+
+\subsection{Uncorrelated Gaussian Variables}
+
+\begin{itemize}
+    \item $\mathrm{Cov}(X_i,X_j)=0$ for $i \neq j$
+    \item $\mathbf{C}_{XX}$ is diagonal
+\end{itemize}
+
+\textbf{Factorization:}
+\begin{equation}
+f_{\mathbf{X}}(\mathbf{x}) = \prod_{n=1}^{N}
+\frac{1}{\sqrt{2\pi\sigma_n^2}}
+\exp\left(-\frac{(x_n - \mu_n)^2}{2\sigma_n^2}\right)
+\end{equation}
+
+\section{Worked Example}
+
+Given:
+\begin{equation}
+\boldsymbol{\mu}_X =
+\begin{bmatrix}
+2 \\ -1 \\ 1
+\end{bmatrix},
+\quad
+\mathbf{A} =
+\begin{bmatrix}
+1 & 0 & -1 \\
+0 & -1 & 1 \\
+-1 & 1 & 0
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mathbf{R}_{XX} =
+\begin{bmatrix}
+13 & 2 & 3 \\
+2 & 10 & 3 \\
+3 & 3 & 10
+\end{bmatrix}
+\end{equation}
+
+\subsection{Mean}
+\begin{equation}
+\boldsymbol{\mu}_Y = \mathbf{A}\boldsymbol{\mu}_X =
+\begin{bmatrix}
+1 \\ 2 \\ -3
+\end{bmatrix}
+\end{equation}
+
+\subsection{Correlation}
+\begin{equation}
+\mathbf{R}_{YY} =
+\begin{bmatrix}
+17 & -6 & -11 \\
+-6 & 14 & -8 \\
+-11 & -8 & 19
+\end{bmatrix}
+\end{equation}
+
+\subsection{Covariance}
+\begin{equation}
+\boldsymbol{\mu}_Y \boldsymbol{\mu}_Y^T =
+\begin{bmatrix}
+1 & 2 & -3 \\
+2 & 4 & -6 \\
+-3 & -6 & 9
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mathbf{C}_{YY} =
+\begin{bmatrix}
+16 & -8 & -8 \\
+-8 & 10 & -2 \\
+-8 & -2 & 10
+\end{bmatrix}
+\end{equation}
+
+\section{Case Study: Smart City Traffic (Ahmedabad)}
+
+\subsection{Variables}
+\begin{itemize}
+    \item $X_1$: Traffic flow
+    \item $X_2$: Speed
+    \item $X_3$: Rainfall
+    \item $X_4$: Temperature
+    \item $X_5$: AQI
+\end{itemize}
+
+\subsection{Interpretation}
+\begin{itemize}
+    \item $\mathrm{Cov}(X_1,X_3) > 0$
+    \item $\mathrm{Cov}(X_2,X_3) < 0$
+    \item $\mathrm{Cov}(X_1,X_5) > 0$
+\end{itemize}
+
+\subsection{Congestion Index}
+\begin{equation}
+Y = 0.6X_1 - 0.4X_2 + 0.8X_3
+\end{equation}
+
+\textbf{Note:} This is a linear transformation ($Y = \mathbf{a}^T \mathbf{X}$).
+
+If $\mathbf{X}$ is Gaussian, then $Y$ is also Gaussian.
+
+\section{Homework}
+
+\begin{itemize}
+    \item Solve: $\boldsymbol{\mu}_X \boldsymbol{\mu}_X^T = \mathbf{R}_{XX} - \mathbf{C}_{XX}$
+    \item Prove: $\mathrm{Var}(X+Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\mathrm{Cov}(X,Y)$
+    \item Derive 2D Gaussian PDF using determinant and inverse
+\end{itemize}
+
+\end{document}
