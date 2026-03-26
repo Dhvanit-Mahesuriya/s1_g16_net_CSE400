@@ -1,0 +1,231 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\title{\textbf{CSE400 – Lecture 20}\\
+Linear Transformations \& Expectations of Multiple Random Variables}
+\date{}
+\maketitle
+
+\section*{1. Random Vectors}
+
+A \textbf{random vector} is a collection of $N$ random variables:
+\[
+\mathbf{X} = [X_1, X_2, \dots, X_N]^T
+\]
+
+\begin{itemize}
+\item Represents a multi-dimensional probabilistic system
+\item Models joint behavior of variables
+\end{itemize}
+
+\section*{2. Mean Vector}
+
+\[
+\boldsymbol{\mu} = E[\mathbf{X}] =
+\begin{bmatrix}
+E[X_1] \\
+E[X_2] \\
+\vdots \\
+E[X_N]
+\end{bmatrix}
+\]
+
+\begin{itemize}
+\item Describes expected (average) state
+\item Each component is the mean of a variable
+\end{itemize}
+
+\section*{3. Covariance Matrix}
+
+\[
+\Sigma = E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^T]
+\]
+
+\subsection*{Element-wise}
+\[
+\Sigma_{ij} = \text{Cov}(X_i, X_j) = E[(X_i - \mu_i)(X_j - \mu_j)]
+\]
+
+\subsection*{Structure}
+\begin{itemize}
+\item Diagonal $\rightarrow \text{Var}(X_i)$
+\item Off-diagonal $\rightarrow$ dependencies
+\end{itemize}
+
+\subsection*{Properties}
+\begin{itemize}
+\item Symmetric: $\Sigma = \Sigma^T$
+\item Positive semi-definite
+\end{itemize}
+
+\subsection*{Interpretation}
+\begin{itemize}
+\item Positive covariance $\rightarrow$ variables increase together
+\item Negative covariance $\rightarrow$ inverse relation
+\item Zero covariance $\rightarrow$ uncorrelated
+\end{itemize}
+
+\section*{4. Correlation Coefficient}
+
+\[
+\rho_{ij} = \frac{\text{Cov}(X_i, X_j)}{\sigma_i \sigma_j}
+\]
+
+\begin{itemize}
+\item Normalized dependency measure
+\item Range: $[-1,1]$
+\end{itemize}
+
+\section*{5. Linear Transformation}
+
+\[
+\mathbf{Y} = A\mathbf{X} + \mathbf{b}
+\]
+
+\begin{itemize}
+\item $A$: transformation matrix
+\item $\mathbf{b}$: constant vector
+\end{itemize}
+
+\section*{6. Expectation under Linear Transformation}
+
+\[
+E[\mathbf{Y}] = E[A\mathbf{X} + \mathbf{b}]
+\]
+
+Using linearity:
+\[
+E[\mathbf{Y}] = A E[\mathbf{X}] + \mathbf{b}
+\]
+
+\[
+\boxed{\boldsymbol{\mu}_Y = A \boldsymbol{\mu}_X + \mathbf{b}}
+\]
+
+\section*{7. Covariance under Linear Transformation}
+
+\[
+\Sigma_Y = E[(\mathbf{Y} - \boldsymbol{\mu}_Y)(\mathbf{Y} - \boldsymbol{\mu}_Y)^T]
+\]
+
+\[
+\mathbf{Y} - \boldsymbol{\mu}_Y = A(\mathbf{X} - \boldsymbol{\mu}_X)
+\]
+
+\[
+\Sigma_Y = E[A(\mathbf{X} - \boldsymbol{\mu}_X)(\mathbf{X} - \boldsymbol{\mu}_X)^T A^T]
+\]
+
+\[
+\boxed{\Sigma_Y = A \Sigma_X A^T}
+\]
+
+\section*{8. Multivariate Gaussian Distribution}
+
+\[
+\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \Sigma)
+\]
+
+\subsection*{Key Characteristics}
+\begin{itemize}
+\item Fully defined by mean vector $\boldsymbol{\mu}$
+\item Covariance matrix $\Sigma$
+\item Captures complete joint behavior
+\end{itemize}
+
+\subsection*{8.1 Closure Property}
+
+If:
+\[
+\mathbf{Y} = A\mathbf{X} + \mathbf{b}
+\]
+
+Then:
+\[
+\mathbf{Y} \sim \mathcal{N}(A\boldsymbol{\mu} + \mathbf{b},\; A\Sigma A^T)
+\]
+
+\section*{9. Joint Distributions}
+
+\begin{itemize}
+\item 1D $\rightarrow$ single variable
+\item 2D $\rightarrow$ joint
+\item ND $\rightarrow$ random vector
+\item Represent individual distributions and inter-variable relationships
+\end{itemize}
+
+\section*{10. Special Cases}
+
+\subsection*{10.1 Zero Covariance}
+
+\[
+\text{Cov}(X_i, X_j) = 0
+\]
+
+\begin{itemize}
+\item Variables are uncorrelated
+\item In Gaussian case $\rightarrow$ implies independence
+\end{itemize}
+
+\subsection*{10.2 Covariance Factorization}
+
+\[
+\Sigma = A A^T
+\]
+
+\begin{itemize}
+\item Used for generating correlated random variables
+\item Useful in matrix decomposition techniques
+\end{itemize}
+
+\section*{11. System Interpretation}
+
+\begin{itemize}
+\item Mean vector $\rightarrow$ baseline system state
+\item Covariance matrix $\rightarrow$ dependency map
+\item Linear transformation $\rightarrow$ derived metrics
+\end{itemize}
+
+\section*{12. Key Formulas}
+
+\[
+\mathbf{X} = [X_1, ..., X_N]^T
+\]
+
+\[
+\boldsymbol{\mu} = E[\mathbf{X}]
+\]
+
+\[
+\Sigma = E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^T]
+\]
+
+\[
+\mathbf{Y} = A\mathbf{X} + \mathbf{b}
+\]
+
+\[
+\boldsymbol{\mu}_Y = A\boldsymbol{\mu} + \mathbf{b}
+\]
+
+\[
+\Sigma_Y = A \Sigma A^T
+\]
+
+\[
+\mathcal{N}(\boldsymbol{\mu}, \Sigma)
+\]
+
+\section*{13. Final Takeaways}
+
+\begin{itemize}
+\item Random vectors model multi-variable systems
+\item Covariance captures dependencies
+\item Linear transformations preserve structure
+\item Gaussian distributions simplify analysis
+\item Zero covariance $\neq$ independence (except Gaussian case)
+\end{itemize}
+
+\end{document}
