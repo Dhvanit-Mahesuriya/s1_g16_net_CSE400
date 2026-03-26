@@ -1,0 +1,277 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Lecture 20: Linear Transformations and Expectations of Multiple Random Variables}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Statistical Representation of Random Vectors}
+
+\subsection{Vector Form}
+
+For random variables $X_1, X_2, \dots, X_N$:
+\[
+X =
+\begin{bmatrix}
+X_1 \\
+X_2 \\
+\vdots \\
+X_N
+\end{bmatrix}
+\]
+
+\textbf{Definition:} $X$ is called a random vector.
+
+\textbf{Purpose:} Compact representation of multiple random variables.
+
+\section{Mean Vector}
+
+\subsection{Definition}
+\[
+\mu_X = E[X]
+\]
+
+\subsection{Structure}
+\[
+\mu_X =
+\begin{bmatrix}
+E[X_1] \\
+E[X_2] \\
+\vdots \\
+E[X_N]
+\end{bmatrix}
+\]
+
+\textbf{Interpretation:} Represents average values.
+
+\section{Correlation Matrix}
+
+\subsection{Definition}
+\[
+R_{XX} = E[XX^T]
+\]
+
+\subsection{Element-wise}
+\[
+R_{XX}(i,j) = E[X_i X_j]
+\]
+
+\subsection{Matrix Form}
+\[
+R_{XX} =
+\begin{bmatrix}
+E[X_1X_1] & E[X_1X_2] & \cdots & E[X_1X_N] \\
+E[X_2X_1] & E[X_2X_2] & \cdots & E[X_2X_N] \\
+\vdots & \vdots & \ddots & \vdots \\
+E[X_NX_1] & E[X_NX_2] & \cdots & E[X_NX_N]
+\end{bmatrix}
+\]
+
+\textbf{Property:} $R_{XX}$ is symmetric.
+
+\section{Covariance Matrix}
+
+\subsection{Definition}
+\[
+C_{XX} = E[(X - \mu_X)(X - \mu_X)^T]
+\]
+
+\subsection{Expanded Form}
+\[
+C_{XX} =
+\begin{bmatrix}
+\mathrm{Var}(X_1) & \mathrm{Cov}(X_1,X_2) & \cdots \\
+\mathrm{Cov}(X_2,X_1) & \mathrm{Var}(X_2) & \cdots \\
+\vdots & \vdots & \ddots
+\end{bmatrix}
+\]
+
+\textbf{Property:} Covariance is symmetric.
+
+\section{Linear Transformation}
+
+\subsection{Model}
+\[
+Y = AX + b
+\]
+
+\subsection{Element-wise}
+\[
+Y_i = \sum_{j=1}^{N} a_{ij} X_j + b_i
+\]
+
+\section{Mean of Transformed Vector}
+
+\[
+\mu_Y = E[Y] = E[AX + b]
+\]
+
+\[
+\mu_Y = AE[X] + b
+\]
+
+\[
+\boxed{\mu_Y = A\mu_X + b}
+\]
+
+\section{Correlation Matrix Transformation}
+
+\[
+R_{YY} = E[(AX + b)(AX + b)^T]
+\]
+
+\[
+R_{YY} = A R_{XX} A^T + A\mu_X b^T + b\mu_X^T A^T + bb^T
+\]
+
+\section{Covariance Matrix Transformation}
+
+\[
+Y - \mu_Y = A(X - \mu_X)
+\]
+
+\[
+C_{YY} = E[(Y - \mu_Y)(Y - \mu_Y)^T]
+\]
+
+\[
+\boxed{C_{YY} = A C_{XX} A^T}
+\]
+
+\section{Summary}
+
+\begin{align*}
+\mu_Y &= A\mu_X + b \\
+C_{YY} &= A C_{XX} A^T \\
+R_{YY} &= A R_{XX} A^T + A\mu_X b^T + b\mu_X^T A^T + bb^T
+\end{align*}
+
+\section{Numerical Example}
+
+\[
+\mu_X =
+\begin{bmatrix}
+2 \\ -1 \\ 1
+\end{bmatrix}
+\]
+
+\subsection{Mean}
+\[
+\mu_Y =
+\begin{bmatrix}
+1 \\ 2 \\ -3
+\end{bmatrix}
+\]
+
+\subsection{Correlation}
+\[
+R_{YY} =
+\begin{bmatrix}
+17 & -6 & -11 \\
+-6 & 14 & -8 \\
+-11 & -8 & 19
+\end{bmatrix}
+\]
+
+\subsection{Covariance}
+\[
+C_{YY} =
+\begin{bmatrix}
+16 & -8 & -8 \\
+-8 & 10 & -2 \\
+-8 & -2 & 10
+\end{bmatrix}
+\]
+
+\section{Gaussian Distributions}
+
+\subsection{Univariate Gaussian}
+\[
+f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}} 
+\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+\]
+
+\subsection{Multivariate Gaussian}
+\[
+f_X(x) =
+\frac{1}{(2\pi)^N \det(C_{XX})^{1/2}}
+\exp\left(-\frac{1}{2}(x-\mu_X)^T C_{XX}^{-1}(x-\mu_X)\right)
+\]
+
+\section{Uncorrelated Gaussian Variables}
+
+\[
+\mathrm{Cov}(X_i,X_j)=0 \quad (i \ne j)
+\]
+
+\[
+C_{XX} =
+\begin{bmatrix}
+\sigma_1^2 & 0 & \cdots \\
+0 & \sigma_2^2 & \cdots \\
+\vdots & \vdots & \ddots
+\end{bmatrix}
+\]
+
+\[
+f_X(x) = \prod_{n=1}^{N}
+\frac{1}{\sqrt{2\pi\sigma_n^2}}
+\exp\left(-\frac{(x_n-\mu_n)^2}{2\sigma_n^2}\right)
+\]
+
+\section{Homework}
+
+\[
+\boxed{\mathrm{Var}(X+Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\mathrm{Cov}(X,Y)}
+\]
+
+\section{Case Study: Smart City System}
+
+\[
+X =
+\begin{bmatrix}
+X_1 \\ X_2 \\ X_3 \\ X_4 \\ X_5
+\end{bmatrix}
+\]
+
+\textbf{Variables:}
+\begin{itemize}
+    \item $X_1$: Traffic flow
+    \item $X_2$: Speed
+    \item $X_3$: Rainfall
+    \item $X_4$: Temperature
+    \item $X_5$: Pollution
+\end{itemize}
+
+\subsection{Model}
+\[
+X \sim \mathcal{N}(\mu,\Sigma)
+\]
+
+\subsection{Linear Transformation}
+\[
+Y = 0.6X_1 - 0.4X_2 + 0.8X_3
+\]
+
+\subsection{Results}
+\[
+E[Y] = a^T \mu
+\]
+\[
+\mathrm{Var}(Y) = a^T \Sigma a
+\]
+
+\subsection{Insights}
+\begin{itemize}
+    \item Rain $\uparrow$ $\Rightarrow$ Traffic $\uparrow$
+    \item Rain $\uparrow$ $\Rightarrow$ Speed $\downarrow$
+    \item Traffic $\uparrow$ $\Rightarrow$ Pollution $\uparrow$
+    \item Temperature $\uparrow$ $\Rightarrow$ Pollution $\downarrow$
+\end{itemize}
+
+\end{document}
