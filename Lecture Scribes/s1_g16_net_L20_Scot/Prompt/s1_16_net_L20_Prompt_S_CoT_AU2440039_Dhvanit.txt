@@ -1,0 +1,10 @@
+
+Assume you are expert lecture scribe generator. Generate lecture scribe suitable for exam preparation like everything at one place  for CSE400  Linear Transformations and Expectations of Multiple RVs 
+
+When you write the scribe, explain each and every thing step by step so that the logic and reasoning are clear. The scribe should include all important things like  definitions, all formulas mentioned, assumptions, concepts, properties, derivations and worked examples mentioned in the lecture each and everything. It should master key of revision like nothing is better than this.  
+
+Use only the provided lecture slides not outside material. Do not add any explanations, examples or anything that is not present in the given context. Do not use any outside sources. 
+
+This lecture scribe should strictly contain only what is given in the context, but it should still be written in clear and organized way suitable for exam revision. 
+
+Make it like the scribe covers every important point from the slides and explains the steps clearly so that it is easy to revise before exams. 
