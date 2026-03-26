@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+
+% ===================== PACKAGES =====================
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+
+% ===================== HEADER & FOOTER =====================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{CSE400: Fundamentals of Probability in Computing}
+\rhead{Lecture 20}
+\cfoot{\thepage}
+
+% ===================== DOCUMENT =====================
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{Lecture 20: Linear Transformations and Expectations of Multiple Random Variables}}
+\end{center}
+
+\vspace{0.5cm}
+
+% ===================== SECTION 1 =====================
+\section{Overview}
+
+This lecture covers:
+\begin{itemize}
+    \item Statistical representation of random vectors
+    \item Mean vector, correlation, and covariance matrices
+    \item Linear transformations
+    \item Mapping properties under $Y = AX + b$
+    \item Multivariate Gaussian distributions
+    \item Extension from 1D/2D to N-dimensional joint PDFs
+    \item Special cases and properties
+\end{itemize}
+
+% ===================== SECTION 2 =====================
+\section{Statistical Representation of Random Vectors}
+
+A system involving multiple random variables is represented as a random vector.
+
+Let:
+\[
+X = [X_1, X_2, \dots, X_N]^T
+\]
+
+% ===================== SECTION 3 =====================
+\section{Case Study: Smart City Traffic + Weather System}
+
+An intelligent system is designed to predict traffic congestion using transportation and climate variables.
+
+\subsection*{Step 1: Define N Random Variables}
+
+A vector of random variables is defined:
+\begin{itemize}
+    \item Represents system variables (traffic, weather, etc.)
+    \item Forms an N-dimensional random vector ($N = 5$)
+\end{itemize}
+
+\subsection*{Step 2: Mean Vector}
+
+The mean vector represents typical or expected values of each variable.
+
+Let:
+\[
+\mu = E[X]
+\]
+
+\subsection*{Step 3: Covariance Matrix}
+
+The covariance matrix captures dependencies between variables.
+
+Interpretation:
+\begin{itemize}
+    \item More rain $\Rightarrow$ more congestion (traffic increases)
+    \item More rain $\Rightarrow$ lower speed
+    \item More traffic $\Rightarrow$ higher pollution
+    \item Higher temperature $\Rightarrow$ pollution disperses
+\end{itemize}
+
+% ===================== SECTION 4 =====================
+\section{Joint Gaussian Distribution}
+
+\textbf{Assumption:} The system follows a joint Gaussian distribution.
+
+This implies:
+\begin{itemize}
+    \item The system is fully described by:
+    \begin{itemize}
+        \item Mean vector
+        \item Covariance matrix
+    \end{itemize}
+\end{itemize}
+
+% ===================== SECTION 5 =====================
+\section{Linear Transformations}
+
+A new variable is defined using a linear transformation:
+\[
+Y = AX + b
+\]
+
+\subsection*{Congestion Index}
+
+The city defines a Congestion Index as a linear transformation of the variables.
+
+% ===================== SECTION 6 =====================
+\section{Inference from Transformation}
+
+\textbf{Inference \#1}
+
+The transformation maps the original variables into a new representation (Congestion Index).
+
+\textbf{Inference \#2}
+
+If rainfall increases suddenly:
+\begin{itemize}
+    \item Speed $\downarrow$
+    \item Traffic $\uparrow$
+    \item Pollution $\uparrow$
+\end{itemize}
+
+% ===================== SECTION 7 =====================
+\section{Key Takeaways}
+
+\begin{itemize}
+    \item Random vectors model multiple random variables jointly
+    \item Mean vector captures expected values
+    \item Covariance matrix captures relationships between variables
+    \item Joint Gaussian distribution fully described by mean and covariance
+    \item Linear transformations map random vectors into new variables
+    \item System behavior can be inferred through dependencies and transformations
+\end{itemize}
+
+\end{document}
