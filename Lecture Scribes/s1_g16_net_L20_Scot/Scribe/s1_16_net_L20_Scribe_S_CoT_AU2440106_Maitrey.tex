@@ -1,0 +1,306 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{bm}
+\usepackage{titlesec}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+\title{\textbf{CSE400 Lecture 20}\\
+Linear Transformations and Expectations of Multiple Random Variables}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This lecture focuses on extending probability concepts to multiple random variables using vector representations. The main topics include:
+\begin{itemize}
+    \item Random vector representation
+    \item Mean vector, correlation and covariance matrices
+    \item Linear transformations
+    \item Mapping properties under $Y = AX + b$
+\end{itemize}
+
+\section{Random Vector Representation}
+
+For random variables $X_1, X_2, \dots, X_N$, we define the random vector:
+
+\[
+\mathbf{X} =
+\begin{bmatrix}
+X_1 \\
+X_2 \\
+\vdots \\
+X_N
+\end{bmatrix}
+\]
+
+\textbf{Interpretation:}
+\begin{itemize}
+    \item $\mathbf{X}$ is called a random vector.
+    \item It provides a compact representation of multiple random variables.
+\end{itemize}
+
+\section{Mean Vector}
+
+\subsection{Definition}
+
+\[
+\boldsymbol{\mu}_X = \mathbb{E}[\mathbf{X}]
+\]
+
+\subsection{Structure}
+
+\[
+\boldsymbol{\mu}_X =
+\begin{bmatrix}
+\mathbb{E}[X_1] \\
+\mathbb{E}[X_2] \\
+\vdots \\
+\mathbb{E}[X_N]
+\end{bmatrix}
+\]
+
+\textbf{Interpretation:}
+\begin{itemize}
+    \item Represents the average value of the random vector.
+    \item Each component corresponds to the mean of one random variable.
+\end{itemize}
+
+\section{Correlation Matrix}
+
+\subsection{Definition}
+
+\[
+R_{XX} = \mathbb{E}[\mathbf{X}\mathbf{X}^T]
+\]
+
+\subsection{Element-wise Form}
+
+\[
+R_{XX}(i,j) = \mathbb{E}[X_i X_j]
+\]
+
+\subsection{Matrix Form}
+
+\[
+R_{XX} =
+\begin{bmatrix}
+\mathbb{E}[X_1X_1] & \mathbb{E}[X_1X_2] & \cdots \\
+\mathbb{E}[X_2X_1] & \mathbb{E}[X_2X_2] & \cdots \\
+\vdots & \vdots & \ddots
+\end{bmatrix}
+\]
+
+\textbf{Property:}
+\[
+R_{XX} \text{ is symmetric}
+\]
+
+\section{Covariance Matrix}
+
+\subsection{Definition}
+
+\[
+C_{XX} = \mathbb{E}\left[(\mathbf{X} - \boldsymbol{\mu}_X)(\mathbf{X} - \boldsymbol{\mu}_X)^T\right]
+\]
+
+\subsection{Matrix Form}
+
+\[
+C_{XX} =
+\begin{bmatrix}
+\mathrm{Var}(X_1) & \mathrm{Cov}(X_1,X_2) & \cdots \\
+\mathrm{Cov}(X_2,X_1) & \mathrm{Var}(X_2) & \cdots \\
+\vdots & \vdots & \ddots
+\end{bmatrix}
+\]
+
+\textbf{Property:}
+\[
+\mathrm{Cov}(X_i,X_j) = \mathrm{Cov}(X_j,X_i)
+\]
+
+\textbf{Interpretation:}
+\begin{itemize}
+    \item Diagonal elements: variances
+    \item Off-diagonal elements: dependencies
+\end{itemize}
+
+\section{Linear Transformation of Random Vectors}
+
+\subsection{Model}
+
+\[
+\mathbf{Y} = A\mathbf{X} + \mathbf{b}
+\]
+
+\textbf{Components:}
+\begin{itemize}
+    \item $A$: transformation matrix
+    \item $\mathbf{b}$: constant vector
+    \item $\mathbf{X}$: input random vector
+\end{itemize}
+
+\subsection{Component Form}
+
+\[
+Y_i = \sum_{j=1}^{N} a_{ij} X_j + b_i
+\]
+
+\section{Mean of Transformed Random Vector}
+
+\subsection{Objective}
+
+\[
+\boldsymbol{\mu}_Y = \mathbb{E}[\mathbf{Y}]
+\]
+
+\subsection{Derivation}
+
+\[
+\boldsymbol{\mu}_Y = \mathbb{E}[A\mathbf{X} + \mathbf{b}]
+\]
+
+Using linearity:
+
+\[
+\boldsymbol{\mu}_Y = \mathbb{E}[A\mathbf{X}] + \mathbb{E}[\mathbf{b}]
+\]
+
+Since $A$ and $\mathbf{b}$ are constants:
+
+\[
+\mathbb{E}[A\mathbf{X}] = A\mathbb{E}[\mathbf{X}], \quad \mathbb{E}[\mathbf{b}] = \mathbf{b}
+\]
+
+\subsection{Result}
+
+\[
+\boxed{\boldsymbol{\mu}_Y = A\boldsymbol{\mu}_X + \mathbf{b}}
+\]
+
+\section{Correlation Matrix Transformation}
+
+\subsection{Definition}
+
+\[
+R_{YY} = \mathbb{E}[\mathbf{Y}\mathbf{Y}^T]
+\]
+
+\subsection{Derivation}
+
+Substitute $\mathbf{Y} = A\mathbf{X} + \mathbf{b}$:
+
+\[
+R_{YY} = \mathbb{E}[(A\mathbf{X} + \mathbf{b})(A\mathbf{X} + \mathbf{b})^T]
+\]
+
+Expand:
+
+\[
+R_{YY} =
+\mathbb{E}[A\mathbf{X}\mathbf{X}^T A^T + A\mathbf{X}\mathbf{b}^T + \mathbf{b}\mathbf{X}^T A^T + \mathbf{b}\mathbf{b}^T]
+\]
+
+Apply expectation:
+
+\[
+R_{YY} =
+A\mathbb{E}[\mathbf{X}\mathbf{X}^T]A^T
++ A\mathbb{E}[\mathbf{X}]\mathbf{b}^T
++ \mathbf{b}\mathbb{E}[\mathbf{X}]^T A^T
++ \mathbf{b}\mathbf{b}^T
+\]
+
+\subsection{Result}
+
+\[
+\boxed{
+R_{YY} = A R_{XX} A^T + A \boldsymbol{\mu}_X \mathbf{b}^T + \mathbf{b} \boldsymbol{\mu}_X^T A^T + \mathbf{b}\mathbf{b}^T
+}
+\]
+
+\section{Covariance Matrix Transformation}
+
+\subsection{Key Observation}
+
+\[
+\mathbf{Y} - \boldsymbol{\mu}_Y = A(\mathbf{X} - \boldsymbol{\mu}_X)
+\]
+
+\subsection{Derivation}
+
+\[
+C_{YY} = \mathbb{E}[(\mathbf{Y} - \boldsymbol{\mu}_Y)(\mathbf{Y} - \boldsymbol{\mu}_Y)^T]
+\]
+
+\[
+= \mathbb{E}[A(\mathbf{X} - \boldsymbol{\mu}_X)(\mathbf{X} - \boldsymbol{\mu}_X)^T A^T]
+\]
+
+\[
+= A \mathbb{E}[(\mathbf{X} - \boldsymbol{\mu}_X)(\mathbf{X} - \boldsymbol{\mu}_X)^T] A^T
+\]
+
+\subsection{Result}
+
+\[
+\boxed{C_{YY} = A C_{XX} A^T}
+\]
+
+\section{Case Study: Smart City System}
+
+\subsection{Steps}
+
+\begin{itemize}
+    \item Define $N$ random variables (traffic, weather, etc.)
+    \item Form random vector $\mathbf{X}$
+    \item Compute mean vector
+    \item Analyze covariance matrix
+\end{itemize}
+
+\subsection{Interpretation}
+
+\begin{itemize}
+    \item More rain $\Rightarrow$ more congestion
+    \item More rain $\Rightarrow$ lower speed
+    \item More traffic $\Rightarrow$ higher pollution
+    \item Higher temperature $\Rightarrow$ pollution disperses
+\end{itemize}
+
+\textbf{Conclusion:} Covariance matrix acts as a dependency map.
+
+\section{Final Summary}
+
+\[
+\mu_X = \mathbb{E}[X], \quad
+R_{XX} = \mathbb{E}[XX^T], \quad
+C_{XX} = \mathbb{E}[(X - \mu)(X - \mu)^T]
+\]
+
+\[
+Y = AX + b
+\]
+
+\[
+\mu_Y = A\mu_X + b
+\]
+
+\[
+R_{YY} = A R_{XX} A^T + A\mu_X b^T + b\mu_X^T A^T + bb^T
+\]
+
+\[
+C_{YY} = A C_{XX} A^T
+\]
+
+\textbf{Key Insight:} Covariance is independent of shift $b$.
+
+\end{document}
