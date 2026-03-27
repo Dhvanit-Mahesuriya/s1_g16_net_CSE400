@@ -1,0 +1,146 @@
+--- LAUNCHING EVALUATION (Reproducibility=False) ---
+
+Evaluating M=3 Configurations...
+  [DEBUG MC=1] Target T1 generated at (2995.2, 2456.4)
+  > Run 1/20 Complete | Base: 0.08 | GA: 58.02 | PSO: 77.00
+  [DEBUG MC=2] Target T1 generated at (3045.1, 2479.1)
+  > Run 2/20 Complete | Base: 0.08 | GA: 59.02 | PSO: 58.02
+  [DEBUG MC=3] Target T1 generated at (2973.1, 2480.8)
+  > Run 3/20 Complete | Base: 0.08 | GA: 58.02 | PSO: 48.03
+  [DEBUG MC=4] Target T1 generated at (3025.5, 2516.4)
+  > Run 4/20 Complete | Base: 0.08 | GA: 68.01 | PSO: 68.01
+  [DEBUG MC=5] Target T1 generated at (3040.3, 2483.8)
+  > Run 5/20 Complete | Base: 0.08 | GA: 59.02 | PSO: 59.02
+  [DEBUG MC=6] Target T1 generated at (3023.2, 2460.9)
+  > Run 6/20 Complete | Base: 0.08 | GA: 68.01 | PSO: 77.00
+  [DEBUG MC=7] Target T1 generated at (2991.6, 2483.4)
+  > Run 7/20 Complete | Base: 0.08 | GA: 48.03 | PSO: 68.01
+  [DEBUG MC=8] Target T1 generated at (2950.9, 2542.5)
+  > Run 8/20 Complete | Base: 0.08 | GA: 29.05 | PSO: 49.03
+  [DEBUG MC=9] Target T1 generated at (2977.8, 2487.9)
+  > Run 9/20 Complete | Base: 0.08 | GA: 59.02 | PSO: 68.01
+  [DEBUG MC=10] Target T1 generated at (3033.3, 2538.8)
+  > Run 10/20 Complete | Base: 19.06 | GA: 48.03 | PSO: 77.00
+  [DEBUG MC=11] Target T1 generated at (2966.8, 2473.4)
+  > Run 11/20 Complete | Base: 0.08 | GA: 77.00 | PSO: 48.03
+  [DEBUG MC=12] Target T1 generated at (3027.7, 2546.2)
+  > Run 12/20 Complete | Base: 0.08 | GA: 58.02 | PSO: 77.00
+  [DEBUG MC=13] Target T1 generated at (3032.0, 2484.6)
+  > Run 13/20 Complete | Base: 0.08 | GA: 48.03 | PSO: 77.00
+  [DEBUG MC=14] Target T1 generated at (2973.9, 2459.6)
+  > Run 14/20 Complete | Base: 0.08 | GA: 59.02 | PSO: 68.01
+  [DEBUG MC=15] Target T1 generated at (2980.2, 2547.5)
+  > Run 15/20 Complete | Base: 0.08 | GA: 68.01 | PSO: 68.01
+  [DEBUG MC=16] Target T1 generated at (3018.5, 2451.7)
+  > Run 16/20 Complete | Base: 0.08 | GA: 59.02 | PSO: 77.00
+  [DEBUG MC=17] Target T1 generated at (3019.4, 2466.3)
+  > Run 17/20 Complete | Base: 0.08 | GA: 48.03 | PSO: 48.03
+  [DEBUG MC=18] Target T1 generated at (2985.7, 2496.8)
+  > Run 18/20 Complete | Base: 0.08 | GA: 59.02 | PSO: 58.02
+  [DEBUG MC=19] Target T1 generated at (3003.8, 2469.3)
+  > Run 19/20 Complete | Base: 0.08 | GA: 68.01 | PSO: 48.03
+  [DEBUG MC=20] Target T1 generated at (3012.0, 2461.3)
+  > Run 20/20 Complete | Base: 0.08 | GA: 59.02 | PSO: 68.01
+
+--- M=3 Statistical Breakdown ---
+Baseline: 1.03 ± 4.14  [95% CI: -0.96, 3.01]
+GA Model: 57.87 ± 10.01  [95% CI: 53.06, 62.68] | Imprv: 5529.1%
+PSO Mod:  64.31 ± 11.07  [95% CI: 59.00, 69.63] | Imprv: 6155.8%
+
+
+Evaluating M=4 Configurations...
+  [DEBUG MC=1] Target T1 generated at (2997.1, 2484.6)
+  > Run 1/20 Complete | Base: 5.07 | GA: 68.01 | PSO: 50.03
+  [DEBUG MC=2] Target T1 generated at (3022.1, 2531.4)
+  > Run 2/20 Complete | Base: 5.07 | GA: 50.03 | PSO: 64.01
+  [DEBUG MC=3] Target T1 generated at (3007.1, 2547.1)
+  > Run 3/20 Complete | Base: 5.07 | GA: 60.02 | PSO: 48.03
+  [DEBUG MC=4] Target T1 generated at (2974.3, 2488.4)
+  > Run 4/20 Complete | Base: 5.07 | GA: 49.03 | PSO: 49.03
+  [DEBUG MC=5] Target T1 generated at (3016.7, 2507.5)
+  > Run 5/20 Complete | Base: 5.07 | GA: 50.03 | PSO: 50.03
+  [DEBUG MC=6] Target T1 generated at (3049.5, 2532.6)
+  > Run 6/20 Complete | Base: 5.07 | GA: 68.01 | PSO: 64.01
+  [DEBUG MC=7] Target T1 generated at (3045.1, 2465.0)
+  > Run 7/20 Complete | Base: 5.07 | GA: 49.03 | PSO: 64.01
+  [DEBUG MC=8] Target T1 generated at (2986.4, 2528.8)
+  > Run 8/20 Complete | Base: 5.07 | GA: 64.01 | PSO: 48.03
+  [DEBUG MC=9] Target T1 generated at (3036.3, 2523.1)
+  > Run 9/20 Complete | Base: 5.07 | GA: 63.01 | PSO: 64.01
+  [DEBUG MC=10] Target T1 generated at (3020.3, 2495.3)
+  > Run 10/20 Complete | Base: 5.07 | GA: 73.00 | PSO: 64.01
+  [DEBUG MC=11] Target T1 generated at (2981.2, 2487.3)
+  > Run 11/20 Complete | Base: 5.07 | GA: 63.01 | PSO: 48.03
+  [DEBUG MC=12] Target T1 generated at (2985.5, 2473.0)
+  > Run 12/20 Complete | Base: 5.07 | GA: 77.00 | PSO: 55.02
+  [DEBUG MC=13] Target T1 generated at (3009.2, 2476.1)
+  > Run 13/20 Complete | Base: 5.07 | GA: 68.01 | PSO: 68.01
+  [DEBUG MC=14] Target T1 generated at (3004.6, 2518.3)
+  > Run 14/20 Complete | Base: 5.07 | GA: 53.02 | PSO: 73.00
+  [DEBUG MC=15] Target T1 generated at (3007.3, 2453.2)
+  > Run 15/20 Complete | Base: 5.07 | GA: 64.01 | PSO: 48.03
+  [DEBUG MC=16] Target T1 generated at (2986.0, 2532.6)
+  > Run 16/20 Complete | Base: 5.07 | GA: 48.03 | PSO: 64.01
+  [DEBUG MC=17] Target T1 generated at (2967.8, 2493.2)
+  > Run 17/20 Complete | Base: 5.07 | GA: 73.00 | PSO: 58.02
+  [DEBUG MC=18] Target T1 generated at (3045.8, 2538.2)
+  > Run 18/20 Complete | Base: 5.07 | GA: 64.01 | PSO: 68.01
+  [DEBUG MC=19] Target T1 generated at (2974.5, 2539.9)
+  > Run 19/20 Complete | Base: 5.07 | GA: 73.00 | PSO: 54.02
+  [DEBUG MC=20] Target T1 generated at (3016.1, 2485.2)
+  > Run 20/20 Complete | Base: 5.07 | GA: 64.01 | PSO: 60.02
+
+--- M=4 Statistical Breakdown ---
+Baseline: 5.07 ± 0.00  [95% CI: 5.07, 5.07]
+GA Model: 62.07 ± 8.99  [95% CI: 57.75, 66.38] | Imprv: 1123.0%
+PSO Mod:  58.07 ± 7.99  [95% CI: 54.23, 61.91] | Imprv: 1044.2%
+
+
+Evaluating M=5 Configurations...
+  [DEBUG MC=1] Target T1 generated at (3015.2, 2494.4)
+  > Run 1/20 Complete | Base: 8.07 | GA: 59.02 | PSO: 71.01
+  [DEBUG MC=2] Target T1 generated at (3035.1, 2477.6)
+  > Run 2/20 Complete | Base: 8.07 | GA: 37.04 | PSO: 37.04
+  [DEBUG MC=3] Target T1 generated at (2989.7, 2464.5)
+  > Run 3/20 Complete | Base: 8.07 | GA: 61.02 | PSO: 61.02
+  [DEBUG MC=4] Target T1 generated at (2963.1, 2544.4)
+  > Run 4/20 Complete | Base: 8.07 | GA: 74.00 | PSO: 73.00
+  [DEBUG MC=5] Target T1 generated at (3011.5, 2528.3)
+  > Run 5/20 Complete | Base: 8.07 | GA: 56.02 | PSO: 65.01
+  [DEBUG MC=6] Target T1 generated at (2960.4, 2499.0)
+  > Run 6/20 Complete | Base: 8.07 | GA: 41.04 | PSO: 62.02
+  [DEBUG MC=7] Target T1 generated at (3017.4, 2540.5)
+  > Run 7/20 Complete | Base: 8.07 | GA: 64.01 | PSO: 70.01
+  [DEBUG MC=8] Target T1 generated at (2969.6, 2524.3)
+  > Run 8/20 Complete | Base: 8.07 | GA: 71.01 | PSO: 54.02
+  [DEBUG MC=9] Target T1 generated at (2956.8, 2526.1)
+  > Run 9/20 Complete | Base: 8.07 | GA: 49.03 | PSO: 57.02
+  [DEBUG MC=10] Target T1 generated at (3015.6, 2453.7)
+  > Run 10/20 Complete | Base: 8.07 | GA: 61.02 | PSO: 61.02
+  [DEBUG MC=11] Target T1 generated at (3015.5, 2469.9)
+  > Run 11/20 Complete | Base: 8.07 | GA: 74.00 | PSO: 56.02
+  [DEBUG MC=12] Target T1 generated at (2963.0, 2547.7)
+  > Run 12/20 Complete | Base: 8.07 | GA: 48.03 | PSO: 55.02
+  [DEBUG MC=13] Target T1 generated at (3022.2, 2528.0)
+  > Run 13/20 Complete | Base: 8.07 | GA: 62.02 | PSO: 59.02
+  [DEBUG MC=14] Target T1 generated at (3048.3, 2526.0)
+  > Run 14/20 Complete | Base: 8.07 | GA: 64.01 | PSO: 71.01
+  [DEBUG MC=15] Target T1 generated at (2950.3, 2478.3)
+  > Run 15/20 Complete | Base: 8.07 | GA: 57.02 | PSO: 73.00
+  [DEBUG MC=16] Target T1 generated at (3013.5, 2528.6)
+  > Run 16/20 Complete | Base: 8.07 | GA: 61.02 | PSO: 62.02
+  [DEBUG MC=17] Target T1 generated at (2968.9, 2473.8)
+  > Run 17/20 Complete | Base: 8.07 | GA: 76.00 | PSO: 64.01
+  [DEBUG MC=18] Target T1 generated at (3002.8, 2520.1)
+  > Run 18/20 Complete | Base: 8.07 | GA: 56.02 | PSO: 56.02
+  [DEBUG MC=19] Target T1 generated at (3015.1, 2472.5)
+  > Run 19/20 Complete | Base: 8.07 | GA: 74.00 | PSO: 61.02
+  [DEBUG MC=20] Target T1 generated at (2995.9, 2534.2)
+  > Run 20/20 Complete | Base: 8.07 | GA: 64.01 | PSO: 74.00
+
+--- M=5 Statistical Breakdown ---
+Baseline: 8.07 ± 0.00  [95% CI: 8.07, 8.07]
+GA Model: 60.47 ± 10.51  [95% CI: 55.42, 65.51] | Imprv: 648.9%
+PSO Mod:  62.12 ± 8.57  [95% CI: 58.00, 66.23] | Imprv: 669.3%
+
+Simulation analysis complete. Plots generated seamlessly.
